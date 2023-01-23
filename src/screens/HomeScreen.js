@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 
-import {ToDoScreen} from '../screens/ToDoScreen' 
+import CalendarComponent from '../assets/components/Calendar';
+import Task from '../components/Task';
 
 export default function HomeScreen({navigation}) {
   return (
@@ -23,23 +24,24 @@ export default function HomeScreen({navigation}) {
           </View>          
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonAction}>
+        <TouchableOpacity style={styles.buttonAction} onPress={() => navigation.navigate('HomeNavigator', { screen: 'ToDo' })}>
           <View style={styles.buttonArea}>
             <Image source={require('../assets/images/discover3.png')} style={styles.imageLogo} />
-            <Text style={styles.functionatilieName}>Diary</Text>
+            <Text style={styles.functionatilieName}>Sei lá</Text>
           </View>          
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonAction}>
+        <TouchableOpacity style={styles.buttonAction} onPress={() => navigation.navigate('HomeNavigator', { screen: 'Diary' })}>
           <View style={styles.buttonArea}>
             <Image source={require('../assets/images/relax2.png')} style={styles.imageLogo} />
-            <Text style={styles.functionatilieName}>Chill</Text>
+            <Text style={styles.functionatilieName}>Diary</Text>
           </View>
         </TouchableOpacity>
       </ScrollView>
 
       <View style={styles.routine}>
         <Text>Minha Rotina</Text>
+        
       </View>
     </View>
   );
@@ -58,19 +60,20 @@ const styles = StyleSheet.create({
     fontSize: 25
   },
   userHeader: {
-    paddingHorizontal: 15,
-    paddingTop: 50
+    marginHorizontal: 15,
+    marginTop: 50
   },
   functionalities: {
-    maxHeight: 100,
+    maxHeight: 120,
     marginBottom: 14,
     marginTop: '5%',
     paddingEnd: 14,
     paddingStart: 14,
-    //backgroundColor: 'red'
+    //backgroundColor: 'red',
   },
   buttonAction: {
     marginRight: 15,
+    marginTop: 10
   },
   buttonArea: {
     backgroundColor: '#ecf0f1',
@@ -82,7 +85,7 @@ const styles = StyleSheet.create({
   },
   imageLogo: {
     flex: 1,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   functionatilieName: {
     fontWeight: 'bold'

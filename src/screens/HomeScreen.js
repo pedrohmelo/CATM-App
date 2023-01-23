@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 
-import CalendarComponent from '../assets/components/Calendar';
+//import CalendarComponent from '../assets/components/Calendar';
 import Task from '../components/Task';
 
 export default function HomeScreen({navigation}) {

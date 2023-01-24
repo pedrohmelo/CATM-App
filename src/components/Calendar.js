@@ -1,5 +1,5 @@
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
-import * as React from 'react-native';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function CalendarComponent() {

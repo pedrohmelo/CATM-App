@@ -15,6 +15,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 const ScreensStack = createStackNavigator()
+const DiaryStack = createStackNavigator()
 
 function HomeNavigator() {
   return (
@@ -52,6 +53,14 @@ function TabNavigator(){
         <Tab.Screen name="Details" component={DetailsScreen} />
       </Tab.Navigator>
     )
+}
+
+function CalendarNavigator(){
+  return(
+    <DiaryStack.Navigator>
+      
+    </DiaryStack.Navigator>
+  )
 }
 
 export default function Routes(){

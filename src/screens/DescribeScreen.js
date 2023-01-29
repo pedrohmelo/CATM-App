@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function DiaryDescribe() {
+export default function DescribeScreen() {
   return (
     <View style={styles.container}>
       <Text>DIARY DESCRIBE</Text>

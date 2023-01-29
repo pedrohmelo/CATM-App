@@ -12,6 +12,8 @@ import DiaryScreen from '../screens/DiaryScreen';
 import { ScreenStack } from 'react-native-screens';
 import { NavigationContainer } from '@react-navigation/native';
 
+import DiaryDescribe from '../screens/DescribeScreen';
+
 
 const Tab = createBottomTabNavigator();
 const ScreensStack = createStackNavigator()
@@ -58,7 +60,7 @@ function TabNavigator(){
 function CalendarNavigator(){
   return(
     <DiaryStack.Navigator>
-      
+      <DiaryStack.Screen name="DescribeScreen" component={DescribeScreen} />
     </DiaryStack.Navigator>
   )
 }
@@ -68,6 +70,7 @@ export default function Routes(){
     <ScreensStack.Navigator screenOptions={{ headerShown: false, animation: 'none', gestureEnabled: false }}>
       <ScreensStack.Screen name={"TabNavigator"} component={TabNavigator} />
       <ScreensStack.Screen name={"HomeNavigator"} component={HomeNavigator} />
+      <ScreensStack.Screen name={"CalendarNavigator"} component={CalendarNavigator} />
     </ScreensStack.Navigator>
   )
 }

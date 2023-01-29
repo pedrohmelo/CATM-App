@@ -12,7 +12,7 @@ import DiaryScreen from '../screens/DiaryScreen';
 import { ScreenStack } from 'react-native-screens';
 import { NavigationContainer } from '@react-navigation/native';
 
-import DiaryDescribe from '../screens/DescribeScreen';
+import DescribeScreen from '../screens/DescribeScreen';
 
 
 const Tab = createBottomTabNavigator();

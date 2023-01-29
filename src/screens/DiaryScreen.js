@@ -6,7 +6,10 @@ export default function DiaryScreen({navigation}) {
     <View style={styles.month}>
       <View style={styles.week}>
         <View style={styles.day}>
-          <TouchableOpacity style={styles.circle} />
+          <TouchableOpacity 
+            style={styles.circle}
+            onPress={() => navigation.navigate('CalendarNavigator')}
+          />
           <Text>01</Text>
         </View>
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function DescribeScreen() {
 
@@ -57,6 +57,21 @@ export default function DescribeScreen() {
           </View>
           
       </View>
+      <View>
+        <Text style={styles.textBoxTitle}>AAAA</Text>
+        <TextInput
+          style={styles.textBox}
+          placeholder='teste'
+          placeholderTextColor='blue'
+          //value={text} TEM QUE SALVAR ISSO AQUI NUMA VARIÁVEL DEPOIS
+        />
+      </View>
+
+      <View>
+        <TouchableOpacity>
+          <Text>SEND</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -69,12 +84,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center'
   },
   emojiActionSelected: {
-    backgroundColor: 'green'
+    backgroundColor: 'green',
+    marginRight: 10
   },
   emojiAction: {
-    //marginRight: 10
+    marginRight: 10
   },
   buttonArea: {
     backgroundColor: '#ecf0f1',
@@ -86,5 +103,16 @@ const styles = StyleSheet.create({
   },
   emoji: {
     fontSize: 40
+  },
+  textBoxTitle: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
+  textBox: {
+    width: '90%',
+    alignSelf: 'center',
+    borderWidth: 2,
+    borderRadius: 5
   }
 });

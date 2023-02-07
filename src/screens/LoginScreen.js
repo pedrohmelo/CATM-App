@@ -1,5 +1,5 @@
 import * as React from 'react-native';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native';
 
 export default function LoginScreen() {
   return (
@@ -10,7 +10,7 @@ export default function LoginScreen() {
       </View>
 
       <View>
-        <InputFields></InputFields>
+        
       </View>
     </KeyboardAvoidingView >
   );

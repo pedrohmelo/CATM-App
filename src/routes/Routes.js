@@ -2,6 +2,8 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
+import LoginScreen from '../screens/LoginScreen'
+
 import HomeScreen from '../screens/HomeScreen'
 import DetailsScreen from '../screens/DetailsScreen'
 import SettingsScreen from '../screens/SettingsScreen'
@@ -14,10 +16,19 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import DescribeScreen from '../screens/DescribeScreen';
 
-
+const LoginStack = createStackNavigator()
 const Tab = createBottomTabNavigator();
 const ScreensStack = createStackNavigator()
 const DiaryStack = createStackNavigator()
+
+
+function LoginNavigator(){
+  return(
+    <LoginStack.Navigator screenOptions={{ headerShown: false, animation: 'none', gestureEnabled: false }}>
+      <LoginStack.Screen name="Login" component={LoginScreen} />
+    </LoginStack.Navigator>
+  )
+}
 
 function HomeNavigator() {
   return (
@@ -68,6 +79,7 @@ function CalendarNavigator(){
 export default function Routes(){
   return (
     <ScreensStack.Navigator screenOptions={{ headerShown: false, animation: 'none', gestureEnabled: false }}>
+      <ScreensStack.Screen name={"LoginNavigator"} component={LoginNavigator} />
       <ScreensStack.Screen name={"TabNavigator"} component={TabNavigator} />
       <ScreensStack.Screen name={"HomeNavigator"} component={HomeNavigator} />
       <ScreensStack.Screen name={"CalendarNavigator"} component={CalendarNavigator} />

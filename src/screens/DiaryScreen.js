@@ -1,83 +1,46 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 
 export default function DiaryScreen({navigation}) {
+  function myFunction() {
+    var today = new Date();
+    var month = today.getMonth();
+    return daysInMonth(month + 1, today.getFullYear())
+  }
+
+  function daysInMonth(month,year) {
+    return new Date(year, month, 0).getDate();
+  }
+
+  function currentMonth(){
+    var today = new Date();
+    const monthName = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio","Junho", "Julho", "Agosto", "Setembro", "Outubro","Novembro", "Dezembro"];
+    return monthName[today.getMonth()];
+  }
+  
+  let actualMonth = currentMonth();  
+  let daysInCurrentMonth = myFunction();
+  
   return (
     <View style={styles.month}>
+
+      <Text style={styles.currentMonth}>{actualMonth}</Text>
+      <Text>{daysInCurrentMonth}</Text>
+
+      <FlatList/>
+
+
       <View style={styles.week}>
+
+      
+
         <View style={styles.day}>
           <TouchableOpacity 
             style={styles.circle}
             onPress={() => navigation.navigate('CalendarNavigator')}
           />
           <Text>01</Text>
-        </View>
-
-        <View style={styles.day}>
-          <TouchableOpacity style={styles.circle} />
-          <Text>02</Text>
-        </View>
-
-        <View style={styles.day}>
-          <TouchableOpacity style={styles.circle} />
-          <Text>03</Text>
-        </View>
-
-        <View style={styles.day}>
-          <TouchableOpacity style={styles.circle} />
-          <Text>04</Text>
-        </View>
-
-        <View style={styles.day}>
-          <TouchableOpacity style={styles.circle} />
-          <Text>05</Text>
-        </View>
-
-        <View style={styles.day}>
-          <TouchableOpacity style={styles.circle} />
-          <Text>06</Text>
-        </View>
-
-        <View style={styles.day}>
-          <TouchableOpacity style={styles.circle} />
-          <Text>07</Text>
-        </View>
-      </View>
-
-      <View style={styles.week}>
-        <View style={styles.day}>
-          <TouchableOpacity style={styles.circle} />
-          <Text>08</Text>
-        </View>
-
-        <View style={styles.day}>
-          <TouchableOpacity style={styles.circle} />
-          <Text>09</Text>
-        </View>
-
-        <View style={styles.day}>
-          <TouchableOpacity style={styles.circle} />
-          <Text>10</Text>
-        </View>
-
-        <View style={styles.day}>
-          <TouchableOpacity style={styles.circle} />
-          <Text>11</Text>
-        </View>
-
-        <View style={styles.day}>
-          <TouchableOpacity style={styles.circle} />
-          <Text>12</Text>
-        </View>
-
-        <View style={styles.day}>
-          <TouchableOpacity style={styles.circle} />
-          <Text>13</Text>
-        </View>
-
-        <View style={styles.day}>
-          <TouchableOpacity style={styles.circle} />
-          <Text>14</Text>
         </View>
       </View>
     </View>
@@ -86,7 +49,15 @@ export default function DiaryScreen({navigation}) {
 
 const styles = StyleSheet.create({
   month: {
-    alignItems: 'center'
+    flex: 1,
+    alignItems: 'center',
+    paddingTop: '20%'
+  },
+  currentMonth: {
+    backgroundColor: 'red',
+    width: '100%',
+    textAlign: 'center',
+    fontSize: 20
   },
   week: {
     backgroundColor: '#fff',

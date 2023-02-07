@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingTop: '10%'
   },
   tasksWrapper: {
     paddingHorizontal: 20

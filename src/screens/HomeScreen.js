@@ -39,7 +39,19 @@ export default function HomeScreen({navigation}) {
       </ScrollView>
 
       <View style={styles.routine}>
-        <Text>Minha Rotina</Text>
+        <Text style={styles.routineTitle}>Atividades</Text>
+
+        <View style={styles.metasBox}>
+          <Text style={{fontWeight: '400', marginBottom: '2%'}}>Metas Diárias</Text>
+
+          <View style={styles.metasText}>
+            <View style={styles.metasAchieved}>
+              <Text>3/5</Text>
+            </View>
+            <Text style={styles.achievedText}>Tarefas Concluídas</Text>
+          </View>
+          <Text>Você ainda não completou nenhuma tarefa</Text>
+        </View>
         
       </View>
     </View>
@@ -90,6 +102,35 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   routine: {
-    backgroundColor: 'orange'
+    padding: 2,
+  },
+  routineTitle: {
+    paddingHorizontal: 10,
+    paddingBottom: 5,
+    fontSize: 18,
+    fontWeight: '700'
+  },
+  metasBox: {
+    width: '90%',
+    borderRadius: 16,
+    backgroundColor: '#F2F1F1',
+    padding: 10,
+    
+  },
+  metasText: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  metasAchieved: {
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 5,
+    marginBottom: '2%'
+  },
+  achievedText: {
+    fontSize: 17,
+    fontWeight: '600',
+    paddingHorizontal: 10,
   }
 });

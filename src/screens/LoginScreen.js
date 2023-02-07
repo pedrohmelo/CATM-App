@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TouchableOpacity }
 import InputFields from '../components/InputFields';
 import InputPasswordFields from '../components/InputPasswordFields';
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -43,8 +43,9 @@ export default function LoginScreen() {
 
       <TouchableOpacity
         style={[styles.loginButton, { backgroundColor: (email && password) ? '#CBD7CD' : '#EDF1F3' }]}
-        disabled={!(email && password)}
+        //disabled={!(email && password)}
         //onPress={() => handleLogin()}
+        onPress={() => navigation.navigate('TabNavigator', { screen: 'HomeScreen' })}
       >
         <Text style={[styles.loginButtonText, { color: (email && password) ? '#1D1F1D' : '#ACB5BB' }]}>Entrar</Text>
       </TouchableOpacity>

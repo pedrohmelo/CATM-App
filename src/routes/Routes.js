@@ -32,7 +32,8 @@ function LoginNavigator(){
 
 function HomeNavigator() {
   return (
-    <ScreensStack.Navigator>
+    <ScreensStack.Navigator screenOptions={{ headerShown: false, animation: 'none', gestureEnabled: false }}>
+      <ScreensStack.Screen name="Home" component={HomeScreen} />
       <ScreensStack.Screen name="ToDo" component={ToDoScreen} />
       <ScreensStack.Screen name="Diary" component={DiaryScreen} />
     </ScreensStack.Navigator>

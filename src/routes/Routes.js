@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import LoginScreen from '../screens/LoginScreen'
+import CreateAccountScreen from '../screens/CreateAccountScreen';
 
 import HomeScreen from '../screens/HomeScreen'
 import DetailsScreen from '../screens/DetailsScreen'
@@ -26,6 +27,7 @@ function LoginNavigator(){
   return(
     <LoginStack.Navigator screenOptions={{ headerShown: false, animation: 'none', gestureEnabled: false }}>
       <LoginStack.Screen name="Login" component={LoginScreen} />
+      <LoginStack.Screen name="CreateAccount" component={CreateAccountScreen} />
     </LoginStack.Navigator>
   )
 }

@@ -73,7 +73,7 @@ export default function DescribeScreen() {
       </View>
 
       <View style={styles.describeText}>
-        <Text style={styles.textBoxTitle}>Consegue pensar em três coisas pelas quais você foi grato hoje?</Text>
+        <Text style={styles.textBoxTitle}>Consegue pensar em algo pelo qual você foi grato hoje?</Text>
         <TextInput
           style={styles.textBox}
           placeholder='teste'
@@ -94,7 +94,8 @@ export default function DescribeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    
+    flex: 1,
+    backgroundColor: '#e5e5e5'
   },
   header: {
     paddingTop: '15%'
@@ -109,14 +110,15 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   emojiActionSelected: {
     backgroundColor: 'green',
-    marginRight: 10
+    marginRight: 10,
+
   },
   emojiAction: {
-    marginRight: 10
+    marginRight: 10,
   },
   buttonArea: {
     backgroundColor: '#ecf0f1',
@@ -130,8 +132,8 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
   describeText: {
-    marginHorizontal: 10,
-    marginVertical: 10
+    paddingHorizontal: 10,
+    paddingVertical: 10
   },
   textBoxTitle: {
     fontSize: 16,

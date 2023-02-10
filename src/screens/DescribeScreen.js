@@ -15,7 +15,7 @@ export default function DescribeScreen() {
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.header}>
         <Text style={styles.title}>Como você está hoje?</Text>
 
           <View style={styles.emojisBox}>
@@ -25,6 +25,7 @@ export default function DescribeScreen() {
             >
               <View style={styles.buttonArea}>
                 <Text style={styles.emoji}>😄</Text>
+                <Text>Ótimo</Text>
               </View>
             </TouchableOpacity>
 
@@ -34,6 +35,7 @@ export default function DescribeScreen() {
             >
               <View style={styles.buttonArea}>
                 <Text style={styles.emoji}>😄</Text>
+                <Text>Neutro</Text>
               </View>
             </TouchableOpacity>
 
@@ -43,6 +45,7 @@ export default function DescribeScreen() {
             >
               <View style={styles.buttonArea}>
                 <Text style={styles.emoji}>😄</Text>
+                <Text>Mal</Text>
               </View>
             </TouchableOpacity>
 
@@ -52,13 +55,25 @@ export default function DescribeScreen() {
             >
               <View style={styles.buttonArea}>
                 <Text style={styles.emoji}>😄</Text>
+                <Text>Péssimo</Text>
               </View>
             </TouchableOpacity>
           </View>
           
       </View>
-      <View>
-        <Text style={styles.textBoxTitle}>Descreva um pouco blablabla</Text>
+      <View style={styles.describeText}>
+        <Text style={styles.textBoxTitle}>Descreva um pouco sobre seu dia</Text>
+        <TextInput
+          style={styles.textBox}
+          placeholder='teste'
+          placeholderTextColor='blue'
+          multiline={true}
+          //value={text} TEM QUE SALVAR ISSO AQUI NUMA VARIÁVEL DEPOIS
+        />
+      </View>
+
+      <View style={styles.describeText}>
+        <Text style={styles.textBoxTitle}>Consegue pensar em três coisas pelas quais você foi grato hoje?</Text>
         <TextInput
           style={styles.textBox}
           placeholder='teste'
@@ -81,12 +96,17 @@ const styles = StyleSheet.create({
   container: {
     
   },
+  header: {
+    paddingTop: '15%'
+  },
   title: {
     textAlign: 'center',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: 18
   },
   emojisBox: {
     marginTop: 10,
+    marginBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center'
@@ -107,13 +127,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emoji: {
-    fontSize: 40
+    fontSize: 40,
+  },
+  describeText: {
+    marginHorizontal: 10,
+    marginVertical: 10
   },
   textBoxTitle: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 10
+    marginBottom: 10,
+    textAlign: 'left'
   },
   textBox: {
     width: '90%',
@@ -124,15 +149,17 @@ const styles = StyleSheet.create({
     //backgroundColor: 'blue'
   },
   saveButton: {
-    marginTop: 10,
+    marginTop: 20,
     width: '50%',
+    //height: '20%',
     borderWidth: 1,
-    borderColor: 'orange',
+    borderColor: '#8eb28e',
+    borderRadius: 5,
     alignSelf: 'center',
-    backgroundColor: 'green'
+    backgroundColor: '#b7e5b7'
   },
   saveButtonText: {
     textAlign: 'center',
-
+    fontSize: 20,
   }
 });

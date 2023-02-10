@@ -34,6 +34,7 @@ const Calendar = ({navigation}) => {
         keyExtractor={(item) => item.toString()}
         numColumns={7}
       />
+      
     </View>
   );
 };
@@ -45,16 +46,20 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   monthText: {
-    fontSize: 20,
+    fontSize: 25,
     marginBottom: 10,
+    marginTop: 15,
   },
   dayContainer: {
-    width: 50,
-    height: 50,
+    width: 45,
+    height: 45,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: 'lightgray',
+    borderRadius: 5,
+    marginHorizontal: 3,
+    marginBottom: 30,
   },
   dayText: {
     fontSize: 16,

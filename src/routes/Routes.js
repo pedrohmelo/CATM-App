@@ -71,7 +71,7 @@ function TabNavigator(){
 
 function CalendarNavigator(){
   return(
-    <DiaryStack.Navigator>
+    <DiaryStack.Navigator screenOptions={{ headerShown: false, animation: 'none', gestureEnabled: false }}>
       <DiaryStack.Screen name="DescribeScreen" component={DescribeScreen} />
     </DiaryStack.Navigator>
   )

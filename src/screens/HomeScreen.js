@@ -1,9 +1,35 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 
 import Task from '../components/Task';
 
+const DATA = [
+  {
+    id: 1,
+    title: 'First Item',
+    description: 'Descrição do item 1'
+  },
+  {
+    id: 2,
+    title: 'Second Item',
+    description: 'Descrição do item 2'
+  },
+  {
+    id: 3,
+    title: 'Third Item',
+    description: 'Descrição do item 3'
+  }
+]
+
+const Item = ({title, description}) => (
+  <View style={styles.item}>
+    <Text>{title}</Text>
+    <Text>{description}</Text>
+  </View>
+)
+
 export default function HomeScreen({navigation}) {
+
   return (
     <View style={styles.container}>
       <View style={styles.userHeader}>
@@ -53,6 +79,14 @@ export default function HomeScreen({navigation}) {
           <Text>Você ainda não completou nenhuma tarefa</Text>
         </View>
         
+      </View>
+
+      <View>
+        <FlatList 
+          data={DATA}
+          renderItem={({item}) => <Item title={item.title} description={item.description} />}
+          keyExtractor={item => item.id}
+        />
       </View>
     </View>
   );
@@ -132,5 +166,13 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '600',
     paddingHorizontal: 10,
+  },
+
+
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
   }
 });

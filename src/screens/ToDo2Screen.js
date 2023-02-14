@@ -1,11 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity, FlatList, Modal, Pressable, KeyboardAvoidingView, TextInput } from "react-native";
-import {AntDesign} from '@expo/vector-icons'
+import { AntDesign } from '@expo/vector-icons'
 
 import tempData from "./TempData";
 import TodoListComp from "../components/TodoListComp";
 
-export default function ToDo2Screen({navigation}){
+export default function ToDo2Screen({ navigation }) {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [value, onChangeText] = useState('');
@@ -13,21 +13,21 @@ export default function ToDo2Screen({navigation}){
     const backgroundColors = ['#5CD859', '#24A6D9', '#595BD9', '#8022D9', '#D159D8', '#D85963', '#D88559'];
     const [color, setColor] = useState(backgroundColors[5]);
 
-    function renderColors(){
+    function renderColors() {
         return backgroundColors.map((bgColor) => (
-            <TouchableOpacity 
+            <TouchableOpacity
                 key={bgColor}
-                style={[styles.colorSelect, {backgroundColor: bgColor}]}
+                style={[styles.colorSelect, { backgroundColor: bgColor }]}
                 onPress={() => setColor(bgColor)}
             />
         ))
     }
 
 
-    return(
+    return (
         <View style={styles.container}>
 
-            <Modal 
+            <Modal
                 animationType="slide"
                 //transparent={true}
                 visible={modalVisible}
@@ -38,43 +38,47 @@ export default function ToDo2Screen({navigation}){
                 <View>
 
                     <TouchableOpacity
-                        style={{position: 'absolute', top: 30, right: 30}}
+                        style={{ position: 'absolute', top: 30, right: 30 }}
                         onPress={() => setModalVisible(!modalVisible)}
                     >
                         <AntDesign name='close' size={24} color={'#2D3436'} />
                     </TouchableOpacity>
 
-                    <View style={{alignSelf: 'stretch', marginHorizontal: 30}}>
+                    <View style={{ alignSelf: 'stretch', marginHorizontal: 30 }}>
                         <Text style={styles.modalListTitle}>Crie uma nova lista</Text>
-                        <TextInput 
-                            style={styles.input} 
+                        <TextInput
+                            style={styles.input}
                             placeholder='Nome da Lista'
-                            value={value} 
+                            value={value}
                             onChangeText={text => onChangeText(text)}
                         />
 
-                        <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 12}}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 12 }}>
                             {renderColors()}
                         </View>
 
-                        <TouchableOpacity style={[styles.create, {backgroundColor: color}]}>
+                        <TouchableOpacity 
+                            style={[styles.create, {backgroundColor: color}]}
+                            // onPress={createTodo(tempData)}
+                        >
                             <Text style={{color: '#fff', fontWeight: '600'}}>Criar</Text>
                         </TouchableOpacity>
+                        
                     </View>
-                                       
+
                 </View>
             </Modal>
 
-            <View style={{flexDirection: 'row'}}>
-                <View style={styles.divider}/>
+            <View style={{ flexDirection: 'row' }}>
+                <View style={styles.divider} />
                 <Text style={styles.title}>
-                    Lista de 
-                    <Text style={{fontWeight: '300', color: '#24A6D9'}}>Afazeres</Text>
+                    Lista de
+                    <Text style={{ fontWeight: '300', color: '#24A6D9' }}>Afazeres</Text>
                 </Text>
-                <View style={styles.divider}/>
+                <View style={styles.divider} />
             </View>
 
-            <View style={{marginVertical: 48}}> 
+            <View style={{ marginVertical: 48 }}>
                 <TouchableOpacity style={styles.addList} onPress={() => setModalVisible(!modalVisible)}>
                     <AntDesign name="plus" size={16} color={'#24A6D9'} />
                 </TouchableOpacity>
@@ -82,15 +86,15 @@ export default function ToDo2Screen({navigation}){
                 <Text style={styles.add}>AddList</Text>
             </View>
 
-            <View style={{height: 275, paddingLeft: 32}}>
-                <FlatList 
+            <View style={{ height: 275, paddingLeft: 32 }}>
+                <FlatList
                     data={tempData}
                     keyExtractor={item => item.name}
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    renderItem={({item}) => (
-                        <TodoListComp list={item}/>
-                        
+                    renderItem={({ item }) => (
+                        <TodoListComp list={item} />
+
                         // <View>
                         //     <Text>{item.name}</Text>
                         // </View>

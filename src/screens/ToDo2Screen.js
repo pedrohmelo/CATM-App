@@ -5,10 +5,24 @@ import {AntDesign} from '@expo/vector-icons'
 import tempData from "./TempData";
 import TodoListComp from "../components/TodoListComp";
 
-
 export default function ToDo2Screen({navigation}){
 
     const [modalVisible, setModalVisible] = useState(false);
+    const [value, onChangeText] = useState('');
+
+    const backgroundColors = ['#5CD859', '#24A6D9', '#595BD9', '#8022D9', '#D159D8', '#D85963', '#D88559'];
+    const [color, setColor] = useState(backgroundColors[5]);
+
+    function renderColors(){
+        return backgroundColors.map((bgColor) => (
+            <TouchableOpacity 
+                key={bgColor}
+                style={[styles.colorSelect, {backgroundColor: bgColor}]}
+                onPress={() => setColor(bgColor)}
+            />
+        ))
+    }
+
 
     return(
         <View style={styles.container}>
@@ -21,7 +35,7 @@ export default function ToDo2Screen({navigation}){
                     setModalVisible(!modalVisible)
                 }}
             >
-                <KeyboardAvoidingView>
+                <View>
 
                     <TouchableOpacity
                         style={{position: 'absolute', top: 30, right: 30}}
@@ -32,19 +46,30 @@ export default function ToDo2Screen({navigation}){
 
                     <View style={{alignSelf: 'stretch', marginHorizontal: 30}}>
                         <Text style={styles.modalListTitle}>Crie uma nova lista</Text>
-                        <TextInput style={styles.input} placeholder='Nome da Lista' />
+                        <TextInput 
+                            style={styles.input} 
+                            placeholder='Nome da Lista'
+                            value={value} 
+                            onChangeText={text => onChangeText(text)}
+                        />
+
+                        <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 12}}>
+                            {renderColors()}
+                        </View>
+
+                        <TouchableOpacity style={[styles.create, {backgroundColor: color}]}>
+                            <Text style={{color: '#fff', fontWeight: '600'}}>Criar</Text>
+                        </TouchableOpacity>
                     </View>
                                        
-                </KeyboardAvoidingView>
+                </View>
             </Modal>
 
             <View style={{flexDirection: 'row'}}>
                 <View style={styles.divider}/>
                 <Text style={styles.title}>
-                    Todo 
-                    <Text style={{fontWeight: '300', color: '#24A6D9'}}>
-                        List
-                    </Text>
+                    Lista de 
+                    <Text style={{fontWeight: '300', color: '#24A6D9'}}>Afazeres</Text>
                 </Text>
                 <View style={styles.divider}/>
             </View>
@@ -82,6 +107,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    // ======== MODAL =========
     modalListTitle: {
         fontSize: 28,
         fontWeight: '800',
@@ -98,6 +124,21 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         fontSize: 16
     },
+    create: {
+        marginTop: 24,
+        height: 50,
+        borderRadius: 6,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    // ===========================
+    //==========COLOR SELECTION========
+    colorSelect: {
+        width: 30,
+        height: 30,
+        borderRadius: 4
+    },
+    //
     divider: {
         backgroundColor: '#A7C8D9',
         height: 1,

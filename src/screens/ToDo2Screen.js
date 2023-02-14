@@ -9,7 +9,8 @@ export default function ToDo2Screen({ navigation }) {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [value, onChangeText] = useState('');
-
+    const [tempDataDinamic, setTempDataDinamic] = useState(false);
+    
     const backgroundColors = ['#5CD859', '#24A6D9', '#595BD9', '#8022D9', '#D159D8', '#D85963', '#D88559'];
     const [color, setColor] = useState(backgroundColors[5]);
 
@@ -23,7 +24,18 @@ export default function ToDo2Screen({ navigation }) {
         ))
     }
 
-
+    function createTodo(name,color){
+        setTempDataDinamic([...tempDataDinamic, {name: name, color: color, todos:[]}]); //qq essa linha faz
+        // essa linha faz o hook da tempDataDinamic fazer um dataDinamic.append, mas quando usa hook n tem append
+        // ...tempDataDInamic pega tudo q ja existe, ai meio q crio um novo array com [oq tem, novo]
+        setModalVisible(false);
+        setColor(backgroundColors[5]); // aq n existe bgColor, pq n t dentro do map
+        onChangeText("");
+    }
+    if (tempDataDinamic == false){
+        setTempDataDinamic(tempData);
+        return
+    }
     return (
         <View style={styles.container}>
 
@@ -59,7 +71,7 @@ export default function ToDo2Screen({ navigation }) {
 
                         <TouchableOpacity 
                             style={[styles.create, {backgroundColor: color}]}
-                            // onPress={createTodo(tempData)}
+                            onPress={() => {createTodo(value,color)}}
                         >
                             <Text style={{color: '#fff', fontWeight: '600'}}>Criar</Text>
                         </TouchableOpacity>
@@ -88,7 +100,7 @@ export default function ToDo2Screen({ navigation }) {
 
             <View style={{ height: 275, paddingLeft: 32 }}>
                 <FlatList
-                    data={tempData}
+                    data={tempDataDinamic}
                     keyExtractor={item => item.name}
                     horizontal
                     showsHorizontalScrollIndicator={false}

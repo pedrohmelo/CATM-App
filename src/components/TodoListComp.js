@@ -1,5 +1,8 @@
 import React, {useState} from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Modal } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Modal, SafeAreaView } from "react-native";
+import {AntDesign} from '@expo/vector-icons'
+
+import TempData from "../screens/TempData";
 
 export default TodoListComp = ({list}) => {
     const completedCount = list.todos.filter(todo => todo.completed).length;
@@ -12,6 +15,10 @@ export default TodoListComp = ({list}) => {
         setTodoList(updatedList);
     };
 
+    const [name, setName] = useState('');
+    const [color, setColor] = useState('');
+    const [todos, setTodos] = useState('');
+
     return(
         <View>
 
@@ -22,9 +29,21 @@ export default TodoListComp = ({list}) => {
                     setModalVisible(!modalVisible)
                 }}
             >
-                <View>
-                    <Text>List Modal</Text>
-                </View>
+                <SafeAreaView style={styles.editModal}>
+                    <TouchableOpacity 
+                        style={{position: 'absolute', top: 64, right: 32, zIndex: 10}}
+                        onPress={() => setModalVisible(!modalVisible)}
+                    >
+                        <AntDesign name='close' size={24} color={'#2D3436'} />
+                    </TouchableOpacity>
+
+                    <View>
+                        <View>
+                            <Text>{list.name}</Text>
+                            <Text>{completedCount}</Text>
+                        </View>
+                    </View>
+                </SafeAreaView>
             </Modal>
 
             <TouchableOpacity 
@@ -74,5 +93,9 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: '700',
         color: '#fff'
+    },
+    //=========MODAL TO EDIT THE LIST===========
+    editModal: {
+        alignItems: 'center'
     }
 })

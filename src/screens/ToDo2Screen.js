@@ -151,14 +151,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    // ===========================
+    // ================================
     //==========COLOR SELECTION========
     colorSelect: {
         width: 30,
         height: 30,
         borderRadius: 4
     },
-    //
+    //=================================
     divider: {
         backgroundColor: '#A7C8D9',
         height: 1,

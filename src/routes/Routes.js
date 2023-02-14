@@ -11,6 +11,7 @@ import SettingsScreen from '../screens/SettingsScreen'
 import { createStackNavigator } from '@react-navigation/stack';
 
 import ToDoScreen from '../screens/ToDoScreen';
+import ToDo2Screen from '../screens/ToDo2Screen';
 import DiaryScreen from '../screens/DiaryScreen';
 import { ScreenStack } from 'react-native-screens';
 import { NavigationContainer } from '@react-navigation/native';
@@ -18,6 +19,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import DescribeScreen from '../screens/DescribeScreen';
 
 const LoginStack = createStackNavigator()
+const AccountStack = createStackNavigator()
 const Tab = createBottomTabNavigator();
 const ScreensStack = createStackNavigator()
 const DiaryStack = createStackNavigator()
@@ -27,16 +29,23 @@ function LoginNavigator(){
   return(
     <LoginStack.Navigator screenOptions={{ headerShown: false, animation: 'none', gestureEnabled: false }}>
       <LoginStack.Screen name="Login" component={LoginScreen} />
-      <LoginStack.Screen name="CreateAccount" component={CreateAccountScreen} />
     </LoginStack.Navigator>
   )
 }
 
-function HomeNavigator() {
+function AccountNavigator(){
+  return(
+    <AccountStack.Navigator screenOptions={{ headerShown: false, animation: 'none', gestureEnabled: false }}>
+      <AccountStack.Screen name="CreateAccount" component={CreateAccountScreen} />
+    </AccountStack.Navigator>
+  )
+}
+
+function HomeNavigator(){
   return (
     <ScreensStack.Navigator screenOptions={{ headerShown: false, animation: 'none', gestureEnabled: false }}>
       <ScreensStack.Screen name="Home" component={HomeScreen} />
-      <ScreensStack.Screen name="ToDo" component={ToDoScreen} />
+      <ScreensStack.Screen name="ToDo" component={ToDo2Screen} />
       <ScreensStack.Screen name="Diary" component={DiaryScreen} />
     </ScreensStack.Navigator>
   );
@@ -83,6 +92,7 @@ export default function Routes(){
   return (
     <ScreensStack.Navigator screenOptions={{ headerShown: false, animation: 'none', gestureEnabled: false }}>
       <ScreensStack.Screen name={"LoginNavigator"} component={LoginNavigator} />
+      <ScreensStack.Screen name={"AccountNavigator"} component={AccountNavigator} />
       <ScreensStack.Screen name={"TabNavigator"} component={TabNavigator} />
       <ScreensStack.Screen name={"HomeNavigator"} component={HomeNavigator} />
       <ScreensStack.Screen name={"CalendarNavigator"} component={CalendarNavigator} />

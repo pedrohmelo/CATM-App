@@ -1,9 +1,122 @@
+// import React, { useState } from 'react';
+// import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+// import moment from 'moment';
+
+// const data = ['😊', '😃', '😎', '😜'];
+
+// const EmojiList = ({ onEmojiPress }) => {
+//   return (
+//     <View style={{alignItems: 'center', alignContent: 'center', flexDirection: 'row'}}>
+//       <FlatList
+//         data={data}
+//         renderItem={({ item }) => (
+//           <TouchableOpacity onPress={() => onEmojiPress(item)}>
+//             <Text style={{ fontSize: 30, padding: 20 }}>{item}</Text>
+//           </TouchableOpacity>
+//         )}
+//         keyExtractor={(item, index) => index.toString()}
+//       />
+//     </View>
+//   );
+// };
+
+// const Calendar = ({ selectedEmoji, currentDay }) => {
+//   const daysInMonth = moment().daysInMonth();
+//   const days = [];
+//   for (let i = 1; i <= daysInMonth; i++) {
+//     days.push(i);
+//   }
+
+//   return (
+//     <View>
+//       <View style={{ flexDirection: 'row' }}>
+//         {days.map((day) => (
+//           <View
+//             key={day}
+//             style={{
+//               width: 40,
+//               height: 40,
+//               borderWidth: 1,
+//               alignItems: 'center',
+//               justifyContent: 'center',
+//             }}
+//           >
+//             <Text style={{ fontSize: 20 }}>{day}</Text>
+//             {day === currentDay ? (
+//               <Text style={{ fontSize: 30 }}>{selectedEmoji}</Text>
+//             ) : null}
+//           </View>
+//         ))}
+//       </View>
+//     </View>
+//   );
+// };
+
+// const EmojiApp = () => {
+//   const [selectedEmoji, setSelectedEmoji] = useState(null);
+//   const currentDay = moment().date();
+
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <EmojiList onEmojiPress={(emoji) => setSelectedEmoji(emoji)} />
+//       <Calendar selectedEmoji={selectedEmoji} currentDay={currentDay} />
+//     </View>
+//   );
+// };
+
+// export default EmojiApp;
+
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+
+
 
 export default function DescribeScreen() {
 
   const [selectedEmoji, setSelectedEmoji] = useState(null);
+  const [emotions, setEmotions] = useState();
+
+//   const data = ['😊', '😃', '😎', '😜'];
+
+// const EmojiList = ({onEmojiPress}) => {
+//   return(
+//     <View>
+//       <FlatList
+//         data={data}
+//         renderItem={({item}) => (
+//           <TouchableOpacity style={selectedEmoji == 0 ? styles.emojiActionSelected : styles.emojiAction}>
+//             <Text>{item}</Text>
+//           </TouchableOpacity>
+//         )}
+//         keyExtractor={(item, index) => index.toString()}
+//         horizontal
+//       />
+//     </View>
+//   )
+// }
+
+  const data = [
+    {
+      id: 0,
+      emoji: '😊',
+      description: 'Ótimo'
+    },
+    {
+      id: 1,
+      emoji: '😊',
+      description: 'Neutro'
+    },
+    {
+      id: 2,
+      emoji: '😊',
+      description: 'Mal'
+    },
+    {
+      id: 3,
+      emoji: '😊',
+      description: 'Péssimo'
+    }
+  ]
 
   function toogleEmoji(id){
     if(id == selectedEmoji){
@@ -13,19 +126,30 @@ export default function DescribeScreen() {
     }
   }
 
+  function saveData(){
+    if(selectedEmoji == null){
+      Alert.alert("Aviso", 'Selecione um emoji para poder salvar');
+      return;
+    }
+    let emotionsCopy = emotions;
+    emotionsCopy = {
+      emoji: selectedEmoji
+    }
+  }
+  
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Como você está hoje?</Text>
 
           <View style={styles.emojisBox}>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={selectedEmoji == 0 ? styles.emojiActionSelected : styles.emojiAction}
               onPress={() => {toogleEmoji(0)}}
             >
               <View style={styles.buttonArea}>
-                <Text style={styles.emoji}>😄</Text>
-                <Text>Ótimo</Text>
+                <Text style={styles.emoji}>{data.emoji}</Text>
+                <Text>{data.description}</Text>
               </View>
             </TouchableOpacity>
 
@@ -84,7 +208,10 @@ export default function DescribeScreen() {
       </View>
 
       <View>
-        <TouchableOpacity style={styles.saveButton}>
+        <TouchableOpacity 
+          style={styles.saveButton}
+          onPress={() => {saveData()}}
+        >
           <Text style={styles.saveButtonText}>Salvar</Text>
         </TouchableOpacity>
       </View>
@@ -156,7 +283,7 @@ const styles = StyleSheet.create({
     //height: '20%',
     borderWidth: 1,
     borderColor: '#8eb28e',
-    borderRadius: 5,
+    borderRadius: 20,
     alignSelf: 'center',
     backgroundColor: '#b7e5b7'
   },

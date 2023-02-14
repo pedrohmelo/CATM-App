@@ -52,7 +52,7 @@ export default function LoginScreen({navigation}) {
 
       <TouchableOpacity
         style={styles.signInButton}
-        onPress={() => navigation.navigate('LoginNavigator', {screen: 'CreateAccountScreen'})}
+        onPress={() => navigation.navigate('AccountNavigator', {screen: 'CreateAccountScreen'})}
       >
         <Text style={styles.signInButtonText}>Criar Conta</Text>
       </TouchableOpacity>

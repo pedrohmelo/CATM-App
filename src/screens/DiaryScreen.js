@@ -25,15 +25,22 @@ const Calendar = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.monthText}>
-        {months[selectedMonth]} {selectedYear}
-      </Text>
-      <FlatList
-        data={days}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.toString()}
-        numColumns={7}
-      />
+
+      <View>
+        <Text>AAA</Text>
+      </View>
+
+      <View style={styles.calendarContainer}>
+        <Text style={styles.monthText}>
+          {months[selectedMonth]} {selectedYear}
+        </Text>
+        <FlatList
+          data={days}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.toString()}
+          numColumns={7}
+        />
+      </View>      
       
     </View>
   );
@@ -42,8 +49,11 @@ const Calendar = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     paddingTop: 20,
+  },
+  calendarContainer: {
+    alignItems: 'center',
+    paddingHorizontal: 10
   },
   monthText: {
     fontSize: 25,
@@ -51,8 +61,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   dayContainer: {
-    width: 45,
-    height: 45,
+    width: 40,
+    height: 40,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -71,19 +81,6 @@ const styles = StyleSheet.create({
 });
 
 export default Calendar;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

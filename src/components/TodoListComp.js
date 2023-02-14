@@ -1,12 +1,37 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, {useState} from "react";
+import { StyleSheet, Text, View, TouchableOpacity, Modal } from "react-native";
 
 export default TodoListComp = ({list}) => {
     const completedCount = list.todos.filter(todo => todo.completed).length;
     const remainingCount = list.todos.length - completedCount;
+    
+    const [todoList, setTodoList] = useState(list);
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const updateTodoList = (updatedList) => {
+        setTodoList(updatedList);
+    };
 
     return(
-        <View style={[styles.listContainer, {backgroundColor: list.color}]}>
+        <View>
+
+            <Modal 
+                animationType="slide" 
+                visible={modalVisible}
+                onRequestClose={() => {
+                    setModalVisible(!modalVisible)
+                }}
+            >
+                <View>
+                    <Text>List Modal</Text>
+                </View>
+            </Modal>
+
+            <TouchableOpacity 
+                style={[styles.listContainer, {backgroundColor: list.color}]}
+                onPress={() => setModalVisible(!modalVisible)}
+            >
+                
             <Text style={styles.listTitle} numberOfLines={1}>
                 {list.name}
             </Text>
@@ -20,6 +45,7 @@ export default TodoListComp = ({list}) => {
                 <Text style={styles.count}>{completedCount}</Text>
                 <Text style={styles.subtitle}>Completed</Text>
             </View>
+            </TouchableOpacity>
         </View>
     )
 }

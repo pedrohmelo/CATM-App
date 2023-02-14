@@ -5,12 +5,14 @@ import { AntDesign } from '@expo/vector-icons'
 import tempData from "./TempData";
 import TodoListComp from "../components/TodoListComp";
 
+//LEMBRETE => TodoList do cara = meu TodoListComp
+
 export default function ToDo2Screen({ navigation }) {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [value, onChangeText] = useState('');
     const [tempDataDinamic, setTempDataDinamic] = useState(false);
-    
+
     const backgroundColors = ['#5CD859', '#24A6D9', '#595BD9', '#8022D9', '#D159D8', '#D85963', '#D88559'];
     const [color, setColor] = useState(backgroundColors[5]);
 
@@ -24,15 +26,20 @@ export default function ToDo2Screen({ navigation }) {
         ))
     }
 
-    function createTodo(name,color){
-        setTempDataDinamic([...tempDataDinamic, {name: name, color: color, todos:[]}]); //qq essa linha faz
+    function createTodo(name, color) {
+        setTempDataDinamic([...tempDataDinamic, { name: name, color: color, todos: [] }]);
         // essa linha faz o hook da tempDataDinamic fazer um dataDinamic.append, mas quando usa hook n tem append
         // ...tempDataDInamic pega tudo q ja existe, ai meio q crio um novo array com [oq tem, novo]
         setModalVisible(false);
-        setColor(backgroundColors[5]); // aq n existe bgColor, pq n t dentro do map
+        setColor(backgroundColors[5]);
         onChangeText("");
     }
-    if (tempDataDinamic == false){
+
+    const renderList = (list) => {
+        return <TodoListComp list={list} />
+    }
+
+    if (tempDataDinamic == false) {
         setTempDataDinamic(tempData);
         return
     }
@@ -69,13 +76,13 @@ export default function ToDo2Screen({ navigation }) {
                             {renderColors()}
                         </View>
 
-                        <TouchableOpacity 
-                            style={[styles.create, {backgroundColor: color}]}
-                            onPress={() => {createTodo(value,color)}}
+                        <TouchableOpacity
+                            style={[styles.create, { backgroundColor: color }]}
+                            onPress={() => { createTodo(value, color) }}
                         >
-                            <Text style={{color: '#fff', fontWeight: '600'}}>Criar</Text>
+                            <Text style={{ color: '#fff', fontWeight: '600' }}>Criar</Text>
                         </TouchableOpacity>
-                        
+
                     </View>
 
                 </View>
@@ -105,11 +112,8 @@ export default function ToDo2Screen({ navigation }) {
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => (
-                        <TodoListComp list={item} />
-
-                        // <View>
-                        //     <Text>{item.name}</Text>
-                        // </View>
+                        //<TodoListComp list={item} />
+                        renderList(item)
                     )}
                 />
             </View>

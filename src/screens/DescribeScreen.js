@@ -98,22 +98,22 @@ export default function DescribeScreen() {
   const data = [
     {
       id: 0,
-      emoji: '😊',
+      emojiIcon: '😊',
       description: 'Ótimo'
     },
     {
       id: 1,
-      emoji: '😊',
+      emojiIcon: '😊',
       description: 'Neutro'
     },
     {
       id: 2,
-      emoji: '😊',
+      emojiIcon: '😊',
       description: 'Mal'
     },
     {
       id: 3,
-      emoji: '😊',
+      emojiIcon: '😊',
       description: 'Péssimo'
     }
   ]
@@ -133,7 +133,7 @@ export default function DescribeScreen() {
     }
     let emotionsCopy = emotions;
     emotionsCopy = {
-      emoji: selectedEmoji
+      emojiIcon: selectedEmoji
     }
   }
   
@@ -143,6 +143,15 @@ export default function DescribeScreen() {
         <Text style={styles.title}>Como você está hoje?</Text>
 
           <View style={styles.emojisBox}>
+            {/* <FlatList
+              data={data}
+              renderItem={({data}) => {
+                <TouchableOpacity style={styles.emojiAction}>
+                  <Text style={styles.emoji}>{data.emojiIcon}</Text>
+                </TouchableOpacity>
+              }}
+              horizontal
+            /> */}
             <TouchableOpacity
               style={selectedEmoji == 0 ? styles.emojiActionSelected : styles.emojiAction}
               onPress={() => {toogleEmoji(0)}}

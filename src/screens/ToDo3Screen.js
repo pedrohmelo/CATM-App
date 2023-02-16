@@ -8,8 +8,8 @@ import {
     Modal,
     TextInput
 } from "react-native";
-import { AntDesign } from '@expo/vector-icons'; 
-
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 export default function ToDo3Screen(){
     const [modalVisible, setModalVisible] = useState(false);
@@ -36,7 +36,7 @@ export default function ToDo3Screen(){
 
     function createTask() {
         if (newTaskName.trim()) {
-            setTasks([...tasks, newTaskName]);
+            setTasks([...tasks, { name: newTaskName, color }]);
             setNewTaskName('');
             toggleModal();
         }
@@ -45,7 +45,8 @@ export default function ToDo3Screen(){
     return(
         <View style={styles.container}>
             <View style={styles.todaysDate}>
-                <Text>DIAAAAAAA</Text>
+                <Text style={styles.headerTitle}>Afazeres</Text>
+                <FontAwesome5 name="tasks" size={24} color="black" />
             </View>
 
             <View style={styles.addButtonBox}>
@@ -81,7 +82,7 @@ export default function ToDo3Screen(){
                     </View>
 
                     <TouchableOpacity 
-                        style={styles.addTaskCreate}
+                        style={[styles.addTaskCreate, {backgroundColor: color}]}
                         onPress={createTask}
                     >
                         <Text style={styles.addTaskCreateText}>Criar Tarefa</Text>
@@ -89,12 +90,15 @@ export default function ToDo3Screen(){
                 </Modal>
             </View>
 
-            <View >
+            <View style={styles.activitiesBox}>
                 <FlatList
                     data={tasks}
-                    renderItem={({item}) => (
-                        <View>
-                            <Text>{item}</Text>
+                    renderItem={({ item }) => (
+                        <View style={[styles.renderedActivities, { backgroundColor: item.color }]}>
+                            <Text>{item.name}</Text>
+                            <TouchableOpacity 
+                                style={styles.renderedActivitiesCheck}
+                            />
                         </View>
                     )}
                     keyExtractor={(item, index) => index.toString()}
@@ -111,7 +115,14 @@ const styles = StyleSheet.create({
     },
     todaysDate: {
         paddingHorizontal: 20,
-        paddingVertical: 50
+        paddingVertical: 50,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    headerTitle: {
+        fontSize: 25,
+        fontWeight: '400'
     },
     addButtonBox: {
         position: 'absolute',
@@ -167,4 +178,27 @@ const styles = StyleSheet.create({
         height: 30,
         borderRadius: 4
     },
+    activitiesBox: {
+        paddingHorizontal: 20,
+    },
+    renderedActivities: {
+        width: '100%',
+        height: 50,
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderRadius: 10,
+        marginBottom: 15,
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: 'white',
+    },
+    renderedActivitiesCheck: {
+        width: 25,
+        height: 25,
+        borderWidth: 1,
+        borderRadius: 5,
+        position: 'absolute',
+        left: '95%',
+        backgroundColor: 'white',
+    }
 });

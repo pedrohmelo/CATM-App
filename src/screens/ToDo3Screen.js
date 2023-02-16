@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
     View, 
     Text, 
@@ -6,10 +6,10 @@ import {
     FlatList,
     TouchableOpacity,
     Modal,
-    TextInput
+    TextInput,
 } from "react-native";
-import { AntDesign } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 export default function ToDo3Screen(){
     const [modalVisible, setModalVisible] = useState(false);
@@ -46,7 +46,7 @@ export default function ToDo3Screen(){
         <View style={styles.container}>
             <View style={styles.todaysDate}>
                 <Text style={styles.headerTitle}>Afazeres</Text>
-                <FontAwesome5 name="tasks" size={24} color="black" />
+                <MaterialCommunityIcons name="clipboard-list-outline" size={34} color="black" />
             </View>
 
             <View style={styles.addButtonBox}>
@@ -93,12 +93,30 @@ export default function ToDo3Screen(){
             <View style={styles.activitiesBox}>
                 <FlatList
                     data={tasks}
-                    renderItem={({ item }) => (
+                    renderItem={({ item, index }) => (
                         <View style={[styles.renderedActivities, { backgroundColor: item.color }]}>
-                            <Text>{item.name}</Text>
-                            <TouchableOpacity 
+                            <Text style={{width: '78%'}}>{item.name}</Text>
+                            <TouchableOpacity
                                 style={styles.renderedActivitiesCheck}
-                            />
+                                onPress={() => {
+                                    const newTasks = [...tasks];
+                                    newTasks[index].completed = !newTasks[index].completed
+                                    setTasks(newTasks)
+                                }}
+                            >
+                                {item.completed && <AntDesign name="check" size={24} color="black" />}
+                            </TouchableOpacity>
+                            {/* removes a task */}
+                            <TouchableOpacity
+                                style={styles.renderedActivitiesDelete}
+                                onPress={() => {
+                                    const newTasks = [...tasks];
+                                    newTasks.splice(index, 1);
+                                    setTasks(newTasks);
+                                }}
+                            >
+                                <AntDesign name="delete" size={24} color="black" />
+                            </TouchableOpacity>
                         </View>
                     )}
                     keyExtractor={(item, index) => index.toString()}
@@ -156,7 +174,7 @@ const styles = StyleSheet.create({
     addTaskCreate: {
         padding: 10,
         marginTop: 20,
-        borderWidth: 1,
+        //borderWidth: 0.5,
         borderRadius: 5,
         width: '50%',
         alignItems: 'center',
@@ -180,12 +198,14 @@ const styles = StyleSheet.create({
     },
     activitiesBox: {
         paddingHorizontal: 20,
+        height: '70%'
     },
     renderedActivities: {
         width: '100%',
-        height: 50,
+        height: 60,
         paddingHorizontal: 10,
-        borderWidth: 1,
+        paddingVertical: 5,
+        borderWidth: 0.5,
         borderRadius: 10,
         marginBottom: 15,
         flexDirection: 'row',
@@ -193,12 +213,25 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     renderedActivitiesCheck: {
-        width: 25,
-        height: 25,
-        borderWidth: 1,
+        width: 30,
+        height: 30,
+        borderWidth: 0.5,
         borderRadius: 5,
         position: 'absolute',
         left: '95%',
         backgroundColor: 'white',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    renderedActivitiesDelete: {
+        width: 30,
+        height: 30,
+        borderWidth: 0.5,
+        borderRadius: 5,
+        position: 'absolute',
+        left: '83%',
+        backgroundColor: 'white',
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 });

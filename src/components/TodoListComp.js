@@ -1,12 +1,13 @@
 import React, {useState} from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Modal, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Modal, SafeAreaView, FlatList } from "react-native";
 import {AntDesign} from '@expo/vector-icons'
 
-import TempData from "../screens/TempData";
+import tempData from "../screens/TempData";
 
 export default TodoListComp = ({list}) => {
     const completedCount = list.todos.filter(todo => todo.completed).length;
     const remainingCount = list.todos.length - completedCount;
+    const taskCount = list.todos.length
     
     const [todoList, setTodoList] = useState(list);
     const [modalVisible, setModalVisible] = useState(false);
@@ -15,9 +16,18 @@ export default TodoListComp = ({list}) => {
         setTodoList(updatedList);
     };
 
-    const [name, setName] = useState('');
+    const [name, setName] = useState();
     const [color, setColor] = useState('');
     const [todos, setTodos] = useState('');
+
+    const renderTodo = (list) => {
+        
+        return (
+            <View>                
+                <Text>{list.title}</Text>
+            </View>
+        )
+    }
 
     return(
         <View>
@@ -37,11 +47,19 @@ export default TodoListComp = ({list}) => {
                         <AntDesign name='close' size={24} color={'#2D3436'} />
                     </TouchableOpacity>
 
-                    <View>
+                    <View style={[styles.section, styles.header, {borderBottomColor: list.color}]}>
                         <View>
-                            <Text>{list.name}</Text>
-                            <Text>{completedCount}</Text>
+                            <Text style={styles.title}>{list.name}</Text>
+                            <Text style={styles.taskCount}>{completedCount} completed of {taskCount} tasks</Text>
                         </View>
+                    </View>
+
+                    <View>
+                        <FlatList
+                            data={list}
+                            renderItem={({item}) => renderTodo(item)}
+                            keyExtractor={item => item.todos}
+                        />
                     </View>
                 </SafeAreaView>
             </Modal>
@@ -95,7 +113,27 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     //=========MODAL TO EDIT THE LIST===========
+    section: {
+        //flex: 1,
+        alignSelf: 'stretch'
+    },
+    header: {
+        justifyContent: 'flex-end',
+        marginLeft: 64,
+        borderBottomWidth: 3
+    },
     editModal: {
         alignItems: 'center'
-    }
+    },
+    title: {
+        fontSize: 30,
+        fontWeight: '800',
+        color: '#2D3436'
+    },
+    taskCount: {
+        marginTop: 4,
+        marginBottom: 16,
+        color: '#A4A4A4',
+        fontWeight: '600'
+    },
 })

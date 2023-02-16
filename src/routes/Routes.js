@@ -12,6 +12,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import ToDoScreen from '../screens/ToDoScreen';
 import ToDo2Screen from '../screens/ToDo2Screen';
+import ToDo3Screen from '../screens/ToDo3Screen';
 import DiaryScreen from '../screens/DiaryScreen';
 import { ScreenStack } from 'react-native-screens';
 import { NavigationContainer } from '@react-navigation/native';
@@ -45,7 +46,7 @@ function HomeNavigator(){
   return (
     <ScreensStack.Navigator screenOptions={{ headerShown: false, animation: 'none', gestureEnabled: false }}>
       <ScreensStack.Screen name="Home" component={HomeScreen} />
-      <ScreensStack.Screen name="ToDo" component={ToDo2Screen} />
+      <ScreensStack.Screen name="ToDo" component={ToDo3Screen} />
       <ScreensStack.Screen name="Diary" component={DiaryScreen} />
     </ScreensStack.Navigator>
   );

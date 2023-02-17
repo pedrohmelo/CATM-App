@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, AsyncStorage } from 'react-native';
+import BackPage from '../components/BackPage';
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -7,6 +8,8 @@ const Calendar = ({navigation}) => {
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedDay, setSelectedDay] = useState(new Date().getDate());
+
+
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
@@ -26,9 +29,7 @@ const Calendar = ({navigation}) => {
   return (
     <View style={styles.container}>
 
-      <View>
-        <Text>AAA</Text>
-      </View>
+      <BackPage/>
 
       <View style={styles.calendarContainer}>
         <Text style={styles.monthText}>

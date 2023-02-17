@@ -10,14 +10,14 @@ import DetailsScreen from '../screens/DetailsScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import { createStackNavigator } from '@react-navigation/stack';
 
-import ToDoScreen from '../screens/ToDoScreen';
-import ToDo2Screen from '../screens/ToDo2Screen';
 import ToDo3Screen from '../screens/ToDo3Screen';
 import DiaryScreen from '../screens/DiaryScreen';
 import { ScreenStack } from 'react-native-screens';
 import { NavigationContainer } from '@react-navigation/native';
 
 import DescribeScreen from '../screens/DescribeScreen';
+
+import NewCalendar from '../screens/NewCalendar'
 
 const LoginStack = createStackNavigator()
 const AccountStack = createStackNavigator()
@@ -48,6 +48,8 @@ function HomeNavigator(){
       <ScreensStack.Screen name="Home" component={HomeScreen} />
       <ScreensStack.Screen name="ToDo" component={ToDo3Screen} />
       <ScreensStack.Screen name="Diary" component={DiaryScreen} />
+      {/* RETIRAR A LINHA ABAIXO DPS */}
+      <ScreensStack.Screen name="NewCalendar" component={NewCalendar} /> 
     </ScreensStack.Navigator>
   );
 }

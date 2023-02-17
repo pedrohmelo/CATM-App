@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 
-import Task from '../components/Task';
-
 const DATA = [
   {
     id: 1,
@@ -49,7 +47,7 @@ export default function HomeScreen({navigation}) {
           </View>          
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonAction} onPress={() => navigation.navigate('HomeNavigator', { screen: 'ToDo' })}>
+        <TouchableOpacity style={styles.buttonAction} onPress={() => navigation.navigate('HomeNavigator', { screen: 'NewCalendar' })}>
           <View style={styles.buttonArea}>
             <Image source={require('../assets/images/discover3.png')} style={styles.imageLogo} />
             <Text style={styles.functionatilieName}>Sei lá</Text>

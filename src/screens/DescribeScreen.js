@@ -1,122 +1,10 @@
-// import React, { useState } from 'react';
-// import { FlatList, Text, TouchableOpacity, View } from 'react-native';
-// import moment from 'moment';
-
-// const data = ['😊', '😃', '😎', '😜'];
-
-// const EmojiList = ({ onEmojiPress }) => {
-//   return (
-//     <View style={{alignItems: 'center', alignContent: 'center', flexDirection: 'row'}}>
-//       <FlatList
-//         data={data}
-//         renderItem={({ item }) => (
-//           <TouchableOpacity onPress={() => onEmojiPress(item)}>
-//             <Text style={{ fontSize: 30, padding: 20 }}>{item}</Text>
-//           </TouchableOpacity>
-//         )}
-//         keyExtractor={(item, index) => index.toString()}
-//       />
-//     </View>
-//   );
-// };
-
-// const Calendar = ({ selectedEmoji, currentDay }) => {
-//   const daysInMonth = moment().daysInMonth();
-//   const days = [];
-//   for (let i = 1; i <= daysInMonth; i++) {
-//     days.push(i);
-//   }
-
-//   return (
-//     <View>
-//       <View style={{ flexDirection: 'row' }}>
-//         {days.map((day) => (
-//           <View
-//             key={day}
-//             style={{
-//               width: 40,
-//               height: 40,
-//               borderWidth: 1,
-//               alignItems: 'center',
-//               justifyContent: 'center',
-//             }}
-//           >
-//             <Text style={{ fontSize: 20 }}>{day}</Text>
-//             {day === currentDay ? (
-//               <Text style={{ fontSize: 30 }}>{selectedEmoji}</Text>
-//             ) : null}
-//           </View>
-//         ))}
-//       </View>
-//     </View>
-//   );
-// };
-
-// const EmojiApp = () => {
-//   const [selectedEmoji, setSelectedEmoji] = useState(null);
-//   const currentDay = moment().date();
-
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//       <EmojiList onEmojiPress={(emoji) => setSelectedEmoji(emoji)} />
-//       <Calendar selectedEmoji={selectedEmoji} currentDay={currentDay} />
-//     </View>
-//   );
-// };
-
-// export default EmojiApp;
-
 import React, { useState } from 'react';
-import { FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-
-
+import { FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, AsyncStorage } from 'react-native';
 
 export default function DescribeScreen() {
 
   const [selectedEmoji, setSelectedEmoji] = useState(null);
-  const [emotions, setEmotions] = useState();
 
-//   const data = ['😊', '😃', '😎', '😜'];
-
-// const EmojiList = ({onEmojiPress}) => {
-//   return(
-//     <View>
-//       <FlatList
-//         data={data}
-//         renderItem={({item}) => (
-//           <TouchableOpacity style={selectedEmoji == 0 ? styles.emojiActionSelected : styles.emojiAction}>
-//             <Text>{item}</Text>
-//           </TouchableOpacity>
-//         )}
-//         keyExtractor={(item, index) => index.toString()}
-//         horizontal
-//       />
-//     </View>
-//   )
-// }
-
-  const data = [
-    {
-      id: 0,
-      emojiIcon: '😊',
-      description: 'Ótimo'
-    },
-    {
-      id: 1,
-      emojiIcon: '😊',
-      description: 'Neutro'
-    },
-    {
-      id: 2,
-      emojiIcon: '😊',
-      description: 'Mal'
-    },
-    {
-      id: 3,
-      emojiIcon: '😊',
-      description: 'Péssimo'
-    }
-  ]
 
   function toogleEmoji(id){
     if(id == selectedEmoji){
@@ -125,40 +13,23 @@ export default function DescribeScreen() {
       setSelectedEmoji(id)
     }
   }
-
-  function saveData(){
-    if(selectedEmoji == null){
-      Alert.alert("Aviso", 'Selecione um emoji para poder salvar');
-      return;
-    }
-    let emotionsCopy = emotions;
-    emotionsCopy = {
-      emojiIcon: selectedEmoji
-    }
-  }
   
+ 
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Como você está hoje?</Text>
 
           <View style={styles.emojisBox}>
-            {/* <FlatList
-              data={data}
-              renderItem={({data}) => {
-                <TouchableOpacity style={styles.emojiAction}>
-                  <Text style={styles.emoji}>{data.emojiIcon}</Text>
-                </TouchableOpacity>
-              }}
-              horizontal
-            /> */}
+      
             <TouchableOpacity
               style={selectedEmoji == 0 ? styles.emojiActionSelected : styles.emojiAction}
               onPress={() => {toogleEmoji(0)}}
             >
               <View style={styles.buttonArea}>
-                <Text style={styles.emoji}>{data.emoji}</Text>
-                <Text>{data.description}</Text>
+                <Text style={styles.emoji}>😔</Text>
+                <Text>Triste</Text>
               </View>
             </TouchableOpacity>
 
@@ -167,7 +38,7 @@ export default function DescribeScreen() {
               onPress={() => {toogleEmoji(1)}}
             >
               <View style={styles.buttonArea}>
-                <Text style={styles.emoji}>😄</Text>
+                <Text style={styles.emoji}>😐</Text>
                 <Text>Neutro</Text>
               </View>
             </TouchableOpacity>
@@ -177,8 +48,8 @@ export default function DescribeScreen() {
               onPress={() => {toogleEmoji(2)}}
             >
               <View style={styles.buttonArea}>
-                <Text style={styles.emoji}>😄</Text>
-                <Text>Mal</Text>
+                <Text style={styles.emoji}>🙂</Text>
+                <Text>Bem</Text>
               </View>
             </TouchableOpacity>
 
@@ -188,18 +59,18 @@ export default function DescribeScreen() {
             >
               <View style={styles.buttonArea}>
                 <Text style={styles.emoji}>😄</Text>
-                <Text>Péssimo</Text>
+                <Text>Feliz</Text>
               </View>
             </TouchableOpacity>
           </View>
           
       </View>
+
       <View style={styles.describeText}>
         <Text style={styles.textBoxTitle}>Descreva um pouco sobre seu dia</Text>
         <TextInput
           style={styles.textBox}
-          placeholder='teste'
-          placeholderTextColor='blue'
+          placeholder='Escreva aqui'
           multiline={true}
           //value={text} TEM QUE SALVAR ISSO AQUI NUMA VARIÁVEL DEPOIS
         />
@@ -209,8 +80,7 @@ export default function DescribeScreen() {
         <Text style={styles.textBoxTitle}>Consegue pensar em algo pelo qual você foi grato hoje?</Text>
         <TextInput
           style={styles.textBox}
-          placeholder='teste'
-          placeholderTextColor='blue'
+          placeholder='Escreva aqui'
           multiline={true}
           //value={text} TEM QUE SALVAR ISSO AQUI NUMA VARIÁVEL DEPOIS
         />
@@ -219,7 +89,7 @@ export default function DescribeScreen() {
       <View>
         <TouchableOpacity 
           style={styles.saveButton}
-          onPress={() => {saveData()}}
+          onPress={console.log(selectedEmoji)}
         >
           <Text style={styles.saveButtonText}>Salvar</Text>
         </TouchableOpacity>
@@ -231,7 +101,7 @@ export default function DescribeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e5e5e5'
+    backgroundColor: '#fff'
   },
   header: {
     paddingTop: '15%'
@@ -245,19 +115,21 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     flexDirection: 'row',
-    alignItems: 'center',
+    //alignItems: 'center',
     justifyContent: 'center',
   },
   emojiActionSelected: {
-    backgroundColor: 'green',
+    backgroundColor: '#98C6EF',
     marginRight: 10,
-
+    borderRadius: 20,
+    width: 70,
+    height: 70
   },
   emojiAction: {
     marginRight: 10,
   },
   buttonArea: {
-    backgroundColor: '#ecf0f1',
+    //backgroundColor: '#ecf0f1',
     height: 70,
     width: 70,
     borderRadius: 35,
@@ -273,28 +145,26 @@ const styles = StyleSheet.create({
   },
   textBoxTitle: {
     fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: '500',
     marginBottom: 10,
-    textAlign: 'left'
+    marginHorizontal: 16
   },
   textBox: {
     width: '90%',
-    //height: 350,
     alignSelf: 'center',
-    borderWidth: 2,
+    borderWidth: 0.5,
     borderRadius: 5,
-    //backgroundColor: 'blue'
+    padding: 5
   },
   saveButton: {
     marginTop: 20,
     width: '50%',
     //height: '20%',
-    borderWidth: 1,
-    borderColor: '#8eb28e',
+    //borderWidth: 1,
+    //borderColor: '#8eb28e',
     borderRadius: 20,
     alignSelf: 'center',
-    backgroundColor: '#b7e5b7'
+    backgroundColor: '#98C6EF'
   },
   saveButtonText: {
     textAlign: 'center',

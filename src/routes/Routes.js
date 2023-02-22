@@ -1,12 +1,13 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 import LoginScreen from '../screens/LoginScreen'
 import CreateAccountScreen from '../screens/CreateAccountScreen';
 
 import HomeScreen from '../screens/HomeScreen'
-import DetailsScreen from '../screens/DetailsScreen'
+import PerfilScreen from '../screens/PerfilScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -63,13 +64,16 @@ function TabNavigator(){
 
             if (route.name === 'Home') {
               iconName = focused ? 'ios-home' : 'ios-home-outline';
+              return <Ionicons name={iconName} size={size} color={color} />;
             } else if (route.name === 'Settings') {
               iconName = focused ? 'settings' : 'settings-outline';
-            } else if (route.name === 'Details') {
-                iconName = focused ? 'ios-airplane' : 'ios-airplane-outline'
+              return <Ionicons name={iconName} size={size} color={color} />;
+            } else if (route.name === 'Perfil') {
+                iconName = focused ? 'user-alt' : 'user'
+                return <FontAwesome5 name={iconName} size={size} color={color} />;
             }
 
-            return <Ionicons name={iconName} size={size} color={color} />;
+            
           },
           tabBarActiveTintColor: 'black',
           tabBarInactiveTintColor: 'gray',
@@ -78,7 +82,7 @@ function TabNavigator(){
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
-        <Tab.Screen name="Details" component={DetailsScreen} />
+        <Tab.Screen name="Perfil" component={PerfilScreen} />
       </Tab.Navigator>
     )
 }

@@ -1,10 +1,10 @@
 import * as React from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function DetailsScreen({navigation}) {
+export default function PerfilScreen({navigation}) {
   return (
     <View style={styles.container}>
-      <Text onPress={() => navigation.navigate('Home')}>DETAILS SCREEN</Text>
+      <Text onPress={() => navigation.navigate('Home')}>PERFIL SCREEN</Text>
     </View>
   );
 }

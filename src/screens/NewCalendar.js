@@ -1,140 +1,3 @@
-// import React, { useState } from 'react';
-// import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-
-// const Calendar = () => {
-//   const [date, setDate] = useState(new Date());
-
-//   const handlePrevMonth = () => {
-//     setDate(prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() - 1, 1));
-//   };
-
-//   const handleNextMonth = () => {
-//     setDate(prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() + 1, 1));
-//   };
-
-//   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-//   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-//   const month = date.getMonth();
-//   const year = date.getFullYear();
-
-//   const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-//   const firstDayOfMonth = new Date(year, month, 1).getDay();
-//   const lastDayOfMonth = new Date(year, month, daysInMonth).getDay();
-
-//   const daysBeforeMonth = firstDayOfMonth;
-//   const daysAfterMonth = 6 - lastDayOfMonth;
-
-//   const days = [];
-
-//   for (let i = daysBeforeMonth; i > 0; i--) {
-//     const day = new Date(year, month, 1 - i);
-//     days.push({ date: day, isCurrentMonth: false });
-//   }
-
-//   for (let i = 1; i <= daysInMonth; i++) {
-//     const day = new Date(year, month, i);
-//     days.push({ date: day, isCurrentMonth: true });
-//   }
-
-//   for (let i = 1; i <= daysAfterMonth; i++) {
-//     const day = new Date(year, month, daysInMonth + i);
-//     days.push({ date: day, isCurrentMonth: false });
-//   }
-
-//   return (
-//     <View style={styles.container}>
-//       <View style={styles.header}>
-//         <TouchableOpacity onPress={handlePrevMonth}>
-//           <Text style={styles.arrow}>{'<'}</Text>
-//         </TouchableOpacity>
-//         <Text style={styles.month}>{monthNames[month]} {year}</Text>
-//         <TouchableOpacity onPress={handleNextMonth}>
-//           <Text style={styles.arrow}>{'>'}</Text>
-//         </TouchableOpacity>
-//       </View>
-//       <View style={styles.daysOfWeek}>
-//         {daysOfWeek.map(day => (
-//           <Text key={day} style={styles.dayOfWeek}>{day}</Text>
-//         ))}
-//       </View>
-//       <View style={styles.days}>
-//         {days.map(({ date, isCurrentMonth }) => (
-//           <TouchableOpacity key={date} style={[styles.day, !isCurrentMonth && styles.dayOutsideMonth]}>
-//             <Text style={[styles.dayNumber, date.getDate() === new Date().getDate() && styles.today]}>
-//               {date.getDate()}
-//             </Text>
-//           </TouchableOpacity>
-//         ))}
-//       </View>
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     backgroundColor: '#fff',
-//     borderRadius: 10,
-//     padding: 10,
-//     marginTop: 50
-//   },
-//   header: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     justifyContent: 'space-between',
-//     marginBottom: 10,
-//   },
-//   arrow: {
-//     fontSize: 20,
-//     color: '#666',
-//   },
-//   month: {
-//     fontSize: 18,
-//     fontWeight: 'bold',
-//     textAlign: 'center'
-//   },
-//   daysOfWeek: {
-//     flexDirection: 'row',
-//     justifyContent: 'space-between',
-//     marginBottom: 10,
-//     },
-//     dayOfWeek: {
-//     fontSize: 12,
-//     color: '#666',
-//     textAlign: 'center',
-//     width: '14%',
-//     },
-//     days: {
-//     flexDirection: 'row',
-//     flexWrap: 'wrap',
-//     },
-//     day: {
-//     width: '14%',
-//     height: 40,
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     },
-//     dayOutsideMonth: {
-//     opacity: 0.5,
-//     },
-//     dayNumber: {
-//     fontSize: 16,
-//     fontWeight: 'bold',
-//     color: '#333',
-//     textAlign: 'center',
-//     },
-//     today: {
-//     backgroundColor: '#eee',
-//     borderRadius: 20,
-//     padding: 8,
-//     },
-//     });
-
-
-// export default Calendar;
-
-
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
@@ -143,7 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 const Calendar = () => {
     const [date, setDate] = useState(new Date());
-    const [selectedEmoji, setSelectedEmoji] = useState('🌞');
+    const [selectedEmoji, setSelectedEmoji] = useState('🐱');
 
     const handlePrevMonth = () => {
         setDate(prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() - 1, 1));
@@ -184,21 +47,53 @@ const Calendar = () => {
         days.push({ date: day, isCurrentMonth: false });
     }
 
-    const renderDay = ({ date, isCurrentMonth }) => {
-        if (date.getDate() === new Date().getDate()) {
-            return (
-                <TouchableOpacity key={date} style={[styles.day, !isCurrentMonth && styles.dayOutsideMonth]}>
-                    <Text style={[styles.today, styles.emoji]}>{selectedEmoji}</Text>
+    const [selectedDate, setSelectedDate] = useState(new Date())
+
+    // const renderDay = ({ date, isCurrentMonth }) => {
+    //     if (date.getDate() === new Date().getDate()) {
+    //         return (
+    //             <TouchableOpacity key={date} style={[styles.day, !isCurrentMonth && styles.dayOutsideMonth]}>
+    //                 <Text style={[styles.today, styles.emoji]}>{selectedEmoji}</Text>
+    //             </TouchableOpacity>
+    //         );
+    //     } else {
+    //         return (
+    //             <TouchableOpacity key={date} style={[styles.day, !isCurrentMonth && styles.dayOutsideMonth]}>
+    //                 <Text style={styles.dayNumber}>{date.getDate()}</Text>
+    //             </TouchableOpacity>
+    //         );
+    //     }
+    // };
+
+    const renderDay = ({date, isCurrentMonth}) => {
+        const selected = selectedDate.getDate() == date.getDate() && isCurrentMonth;
+        const style = selected ? [styles.today, styles.emoji] : styles.dayNumber;
+        const text = selected ? selectedEmoji : date.getDate()
+        
+        console.log(date, '\n')
+        console.log(selectedDate, '\n')
+        console.log(text, '\n')
+        console.log(selectedEmoji, '\n')
+        console.log(selected, '\n\n', '\n')
+        return(
+                <TouchableOpacity key={date} style = {[styles.day, !isCurrentMonth && styles.dayOutsideMonth]}
+                    onPress={() => {setSelectedDate(date)}}
+                >
+                    <Text style={style}>{text}</Text>
                 </TouchableOpacity>
-            );
-        } else {
-            return (
-                <TouchableOpacity key={date} style={[styles.day, !isCurrentMonth && styles.dayOutsideMonth]}>
-                    <Text style={styles.dayNumber}>{date.getDate()}</Text>
-                </TouchableOpacity>
-            );
-        }
-    };
+        )
+    }
+
+    function saveData (selectedDate, selectedEmoji)  {
+        const selected = selectedDate.getDate() == date.getDate();
+        const style = selected ? [styles.today, styles.emoji] : styles.dayNumber;
+        return(
+            <TouchableOpacity key={selectedDate} style = {[styles.day,  styles.dayOutsideMonth]}  
+            >
+                <Text style={style}>{selectedEmoji}</Text>
+            </TouchableOpacity>
+    )
+    }
 
     return (
         <ScrollView style={styles.container}>
@@ -220,6 +115,9 @@ const Calendar = () => {
             <View style={styles.days}>
                 {days.map(renderDay)}
             </View>
+            <View>
+                <Text style={styles.textBoxTitle}>Como você está hoje?</Text>
+            </View>
             <View style={styles.pickerContainer}>
                 <View style={styles.picker}>
                     <Text style={styles.emoji}>{selectedEmoji}</Text>
@@ -227,10 +125,10 @@ const Calendar = () => {
                         selectedValue={selectedEmoji}
                         onValueChange={itemValue => setSelectedEmoji(itemValue)}
                         style={styles.pickerMenu}>
-                        <Picker.Item label="Triste" value="😔" />
-                        <Picker.Item label="Neutro" value="😐" />
-                        <Picker.Item label="Bem" value="🙂" />
-                        <Picker.Item label="Feliz" value="😀" />
+                        <Picker.Item label="Triste 😿" value="😿" />
+                        <Picker.Item label="Neutro 🐱" value="🐱" />
+                        <Picker.Item label="Bem 😺" value="😺" />
+                        <Picker.Item label="Feliz 😻" value="😻" />
                     </Picker>
                 </View>
             </View>
@@ -240,7 +138,7 @@ const Calendar = () => {
                     style={styles.textBox}
                     placeholder='Escreva aqui'
                     multiline={true}
-                //value={text} TEM QUE SALVAR ISSO AQUI NUMA VARIÁVEL DEPOIS
+                    //value={text} TEM QUE SALVAR ISSO AQUI NUMA VARIÁVEL DEPOIS
                 />
             </View>
 
@@ -257,6 +155,8 @@ const Calendar = () => {
             <View>
                 <TouchableOpacity
                     style={styles.saveButton}
+                    // onPress={() => console.log(selectedEmoji, '\n' ,selectedDate, '\n', daysInMonth, '\n')}
+                    onPress={() => saveData(selectedDate, selectedEmoji)}
                 >
                     <Text style={styles.saveButtonText}>Salvar</Text>
                 </TouchableOpacity>

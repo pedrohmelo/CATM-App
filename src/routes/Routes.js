@@ -20,6 +20,8 @@ import DescribeScreen from '../screens/DescribeScreen';
 
 import NewCalendar from '../screens/NewCalendar'
 
+import ChartScreen from '../screens/ChartScreen';
+
 const LoginStack = createStackNavigator()
 const AccountStack = createStackNavigator()
 const Tab = createBottomTabNavigator();
@@ -51,6 +53,7 @@ function HomeNavigator(){
       <ScreensStack.Screen name="Diary" component={DiaryScreen} />
       {/* RETIRAR A LINHA ABAIXO DPS */}
       <ScreensStack.Screen name="NewCalendar" component={NewCalendar} /> 
+      <ScreensStack.Screen name="ChartScreen" component={ChartScreen} /> 
     </ScreensStack.Navigator>
   );
 }

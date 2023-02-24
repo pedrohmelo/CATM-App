@@ -54,7 +54,7 @@ export default function HomeScreen({navigation}) {
           </View>          
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonAction} onPress={() => navigation.navigate('HomeNavigator', { screen: 'Diary' })}>
+        <TouchableOpacity style={styles.buttonAction} onPress={() => navigation.navigate('HomeNavigator', { screen: 'ChartScreen' })}>
           <View style={styles.buttonArea}>
             <Image source={require('../assets/images/relax2.png')} style={styles.imageLogo} />
             <Text style={styles.functionatilieName}>Diary</Text>

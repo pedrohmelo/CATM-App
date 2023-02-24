@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { VictoryPie } from 'victory-native'
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { VictoryPie, VictoryLine, VictoryChart } from 'victory-native'
 
 import { Picker } from '@react-native-picker/picker';
 
@@ -12,20 +12,18 @@ export default function ChartScreen({ navigation }) {
     const [month, setMonth] = useState("Janeiro")
 
     const [data, setData] = useState([]);
-    
-    //PRO PICKER
-    const [selectedEMOJI, setSelectedEMOJI] = useState()
+
 
     useEffect(() => {
         setData(EMOTIONSDATA[month])
     }, [month])
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
 
             <View>
                 <Picker
-                    selectedValue={selectedEMOJI}
+                    selectedValue={month}
                     onValueChange={(itemValue, itemIndex) => setMonth(itemValue)}
                     style={{
                         backgroundColor: '#FFF',
@@ -34,9 +32,6 @@ export default function ChartScreen({ navigation }) {
                         marginLeft: 50
                       }}
                 >
-                    {/* <Picker.Item label="Janeiro" value="0"/>
-                    <Picker.Item label="Fevereiro" value="1"/>
-                    <Picker.Item label="Março" value="2"/> */}
                     {
                         MONTHS.map(item => (
                             <Picker.Item
@@ -58,10 +53,28 @@ export default function ChartScreen({ navigation }) {
                 />
             </View>
 
+            <VictoryChart
+                
+            >
+                <VictoryLine
+                    style={{
+                        data: { stroke: "#c43a31" },
+                        parent: { border: "1px solid #ccc" }
+                    }}
+                    data={[
+                        { x: 1, y: 2 },
+                        { x: 2, y: 3 },
+                        { x: 3, y: 5 },
+                        { x: 4, y: 4 },
+                        { x: 5, y: 7 }
+                    ]}
+                />
+            </VictoryChart>
+
 
 
             <Text>B</Text>
-        </View>
+        </ScrollView>
     )
 }
 

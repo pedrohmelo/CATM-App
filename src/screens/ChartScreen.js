@@ -26,7 +26,7 @@ export default function ChartScreen({ navigation }) {
             <View>
                 <Picker
                     selectedValue={selectedEMOJI}
-                    onValueChange={(itemValue) => setMonth(itemValue)}
+                    onValueChange={(itemValue, itemIndex) => setMonth(itemValue)}
                     style={{
                         backgroundColor: '#FFF',
                         height: 50,

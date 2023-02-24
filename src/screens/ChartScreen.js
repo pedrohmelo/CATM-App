@@ -4,8 +4,8 @@ import { VictoryPie } from 'victory-native'
 
 import { Picker } from '@react-native-picker/picker';
 
-import { EXPENSES } from "../utils/expenses";
-import { MONTHS } from '../utils/months'
+import { EMOTIONSDATA } from "../utils/emotionsData";
+import { MONTHS } from "../utils/months";
 
 export default function ChartScreen({ navigation }) {
 
@@ -17,7 +17,7 @@ export default function ChartScreen({ navigation }) {
     const [selectedEMOJI, setSelectedEMOJI] = useState()
 
     useEffect(() => {
-        setData(EXPENSES[month])
+        setData(EMOTIONSDATA[month])
     }, [month])
 
     return (
@@ -26,10 +26,26 @@ export default function ChartScreen({ navigation }) {
             <View>
                 <Picker
                     selectedValue={selectedEMOJI}
-                    onValueChange={(itemValue, itemIndex) => setSelectedEMOJI(itemValue)}
+                    onValueChange={(itemValue) => setMonth(itemValue)}
+                    style={{
+                        backgroundColor: '#FFF',
+                        height: 50,
+                        flex: 1,
+                        marginLeft: 50
+                      }}
                 >
-                    <Picker.Item label="triste" value="triste"/>
-                    <Picker.Item label="feliz" value="feliz"/>
+                    {/* <Picker.Item label="Janeiro" value="0"/>
+                    <Picker.Item label="Fevereiro" value="1"/>
+                    <Picker.Item label="Março" value="2"/> */}
+                    {
+                        MONTHS.map(item => (
+                            <Picker.Item
+                                key={item.label}
+                                label={item.label}
+                                value={item.label}
+                            />
+                        ))
+                    }
                 </Picker>
             </View>
 

@@ -1,4 +1,4 @@
-export const EXPENSES = {
+export const EMOTIONSDATA = {
     'Janeiro': [
       {
         id: "1",
@@ -51,5 +51,31 @@ export const EXPENSES = {
         color: "#35E3AF",
       },
     ],
+    'Março': [
+      {
+        id: "1",
+        label: "Triste",
+        value: 200,
+
+      },
+      {
+        id: "2",
+        label: "Neutro",
+        value: 200,
+
+      },
+      {
+        id: "3",
+        label: "Bem",
+        value: 200,
+
+      },
+      {
+        id: "4",
+        label: "Feliz",
+        value: 200,
+
+      }
+    ]
 
   };

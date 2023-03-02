@@ -3,78 +3,78 @@ export const EMOTIONSDATA = {
       {
         id: "1",
         label: "Triste",
-        value: 99,
-        color: "#975FFF",
+        value: 20,
+        color: "#A9A9A9",
       },
       {
         id: "2",
         label: "Neutro",
-        value: 55,
-        color: "#FF8555",
+        value: 5,
+        color: "#EBDED3",
       },
       {
         id: "3",
         label: "Bem",
-        value: 950,
-        color: "#576EFE",
+        value: 5,
+        color: "#7EDBEB",
       },
       {
         id: "4",
         label: "Feliz",
-        value: 120,
-        color: "#35E3AF",
+        value: 5,
+        color: "#EBC580",
       },
     ],
     'Fevereiro': [
       {
         id: "1",
         label: "Triste",
-        value: 199,
-        color: "#975FFF",
+        value: 5,
+        color: "#A9A9A9",
       },
       {
         id: "2",
         label: "Neutro",
-        value: 250.25,
-        color: "#FF8555",
+        value: 10,
+        color: "#EBDED3",
       },
       {
         id: "3",
         label: "Bem",
-        value: 145,
-        color: "#55C5FE",
+        value: 11,
+        color: "#7EDBEB",
       },
       {
         id: "4",
         label: "Feliz",
-        value: 380,
-        color: "#35E3AF",
+        value: 7,
+        color: "#EBC580",
       },
     ],
     'Março': [
       {
         id: "1",
         label: "Triste",
-        value: 200,
-
+        value: 15,
+        color: "#A9A9A9",
       },
       {
         id: "2",
         label: "Neutro",
-        value: 200,
-
+        value: 3,
+        color: "#EBDED3",
       },
       {
         id: "3",
         label: "Bem",
-        value: 200,
-
+        value: 2,
+        color: "#7EDBEB",
       },
       {
         id: "4",
         label: "Feliz",
-        value: 200,
-
+        value: 10,
+        color: "#EBC580",
       }
     ]
 

@@ -13,7 +13,6 @@ export default function ChartScreen({ navigation }) {
 
     const [data, setData] = useState([]);
 
-
     useEffect(() => {
         setData(EMOTIONSDATA[month])
     }, [month])
@@ -21,15 +20,16 @@ export default function ChartScreen({ navigation }) {
     return (
         <ScrollView style={styles.container}>
 
-            <View>
+            <View style={styles.header}>
+                <Text style={styles.headerTitle}>Período</Text>
                 <Picker
                     selectedValue={month}
-                    onValueChange={(itemValue, itemIndex) => setMonth(itemValue)}
+                    onValueChange={(itemValue) => setMonth(itemValue)}
                     style={{
                         backgroundColor: '#FFF',
                         height: 50,
-                        flex: 1,
-                        marginLeft: 50
+                        width: 150,
+                        marginLeft: 50,
                       }}
                 >
                     {
@@ -50,30 +50,39 @@ export default function ChartScreen({ navigation }) {
                     data={data}
                     x="label"
                     y="value"
+                    colorScale={data.map(EMOTIONSDATA => EMOTIONSDATA.color)}
+                    animate={{duration: 1500}}
+                    innerRadius={50}
+                    style={{
+                        labels: {
+                            fontSize: 12
+                        }
+                    }}
+                    height={300}
+                    padAngle={3}                    
                 />
             </View>
+            
+            {/* <Text style={{}}>{data.map(EMOTIONSDATA => EMOTIONSDATA.value)}</Text> */}
+            {data.length > 0 && (
+                <View style={{paddingHorizontal: 10}}>
+                    <Text style={{fontSize: 17, fontWeight: '500', paddingBottom: 5}}>Durante o mês de {month} você teve:</Text>
+                    <Text style={{fontSize: 15, fontWeight: '400'}}> - {data[0].value} dias tristes</Text>
+                    <Text style={{fontSize: 15, fontWeight: '400'}}> - {data[1].value} dias neutros</Text>
+                    <Text style={{fontSize: 15, fontWeight: '400'}}> - {data[2].value} dias bons</Text>
+                    <Text style={{fontSize: 15, fontWeight: '400'}}> - {data[3].value} dias felizes</Text>
+                    
+                    {data[0].value > data[1].value && (
+                        <Text style={{width: '95%', textAlign: 'justify', paddingVertical: 5, color: '#A9A9A9'}}>
+                            Talvez este não tenha sido um bom mês pra você,
+                            pode ser uma ideia interessante rever os hábitos 
+                            que você anotou e tentar descobrir se eles contribuíram
+                            para o seu mal estar!
+                        </Text>
+                    )}                    
+                </View>
+            )}
 
-            <VictoryChart
-                
-            >
-                <VictoryLine
-                    style={{
-                        data: { stroke: "#c43a31" },
-                        parent: { border: "1px solid #ccc" }
-                    }}
-                    data={[
-                        { x: 1, y: 2 },
-                        { x: 2, y: 3 },
-                        { x: 3, y: 5 },
-                        { x: 4, y: 4 },
-                        { x: 5, y: 7 }
-                    ]}
-                />
-            </VictoryChart>
-
-
-
-            <Text>B</Text>
         </ScrollView>
     )
 }
@@ -83,9 +92,18 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 50,
     },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginHorizontal: 20
+    },
+    headerTitle: {
+        fontSize: 20,
+        fontWeight: '500'
+    },
     chart: {
-        marginTop: 100,
+        paddingTop: 10,
         width: '100%',
-        alignItems: 'center'
     }
 })

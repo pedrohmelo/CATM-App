@@ -43,21 +43,21 @@ export default function HomeScreen({navigation}) {
         <TouchableOpacity style={styles.buttonAction} onPress={() => navigation.navigate('HomeNavigator', { screen: 'ToDo' })}>
           <View style={styles.buttonArea}>
             <Image source={require('../assets/images/todolist.png')} style={styles.imageLogo} />
-            <Text style={styles.functionatilieName}>To do</Text>
+            <Text style={styles.functionatilieName}>Afazeres</Text>
           </View>          
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.buttonAction} onPress={() => navigation.navigate('HomeNavigator', { screen: 'NewCalendar' })}>
           <View style={styles.buttonArea}>
             <Image source={require('../assets/images/discover3.png')} style={styles.imageLogo} />
-            <Text style={styles.functionatilieName}>Sei lá</Text>
+            <Text style={styles.functionatilieName}>Diário</Text>
           </View>          
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.buttonAction} onPress={() => navigation.navigate('HomeNavigator', { screen: 'ChartScreen' })}>
           <View style={styles.buttonArea}>
             <Image source={require('../assets/images/relax2.png')} style={styles.imageLogo} />
-            <Text style={styles.functionatilieName}>Diary</Text>
+            <Text style={styles.functionatilieName}>Dados</Text>
           </View>
         </TouchableOpacity>
       </ScrollView>

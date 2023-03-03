@@ -56,7 +56,7 @@ export default function HomeScreen({navigation}) {
 
         <TouchableOpacity style={styles.buttonAction} onPress={() => navigation.navigate('HomeNavigator', { screen: 'ChartScreen' })}>
           <View style={styles.buttonArea}>
-            <Image source={require('../assets/images/relax2.png')} style={styles.imageLogo} />
+            <Image source={require('../assets/images/charts.png')} style={styles.imageLogo} />
             <Text style={styles.functionatilieName}>Dados</Text>
           </View>
         </TouchableOpacity>

@@ -4,7 +4,7 @@ import { VictoryPie, VictoryLine, VictoryChart } from 'victory-native'
 
 import { Picker } from '@react-native-picker/picker';
 
-import { EMOTIONSDATA } from "../utils/emotionsData";
+import { DAILYEMOTIONS, EMOTIONSDATA } from "../utils/emotionsData";
 import { MONTHS } from "../utils/months";
 
 export default function ChartScreen({ navigation }) {
@@ -15,6 +15,12 @@ export default function ChartScreen({ navigation }) {
 
     useEffect(() => {
         setData(EMOTIONSDATA[month])
+    }, [month])
+
+    const [dailyData, setDailyData] = useState([]);
+
+    useEffect(() => {
+        setDailyData(DAILYEMOTIONS[month])
     }, [month])
 
     return (
@@ -62,7 +68,7 @@ export default function ChartScreen({ navigation }) {
                     padAngle={3}                    
                 />
             </View>
-            
+
             {/* <Text style={{}}>{data.map(EMOTIONSDATA => EMOTIONSDATA.value)}</Text> */}
             {data.length > 0 && (
                 <View style={{paddingHorizontal: 10}}>
@@ -82,6 +88,18 @@ export default function ChartScreen({ navigation }) {
                     )}                    
                 </View>
             )}
+
+            <View>
+                <VictoryChart>
+                    <VictoryLine
+                        style={{
+                            data: { stroke: "#c43a31" },
+                            parent: { border: "1px solid #ccc" }
+                        }}
+                        data={dailyData}
+                    />
+                </VictoryChart>
+            </View>
 
         </ScrollView>
     )

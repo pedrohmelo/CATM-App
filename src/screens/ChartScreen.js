@@ -69,33 +69,6 @@ export default function ChartScreen({ navigation }) {
                 />
             </View>
 
-            {/* <Text style={{}}>{data.map(EMOTIONSDATA => EMOTIONSDATA.value)}</Text> */}
-            {data.length > 0 && (
-                <View style={{paddingHorizontal: 10}}>
-                    <Text style={{fontSize: 17, fontWeight: '500', paddingBottom: 5}}>Durante o mês de {month} você teve:</Text>
-                    <Text style={{fontSize: 15, fontWeight: '400'}}> - {data[0].value} dias tristes</Text>
-                    <Text style={{fontSize: 15, fontWeight: '400'}}> - {data[1].value} dias neutros</Text>
-                    <Text style={{fontSize: 15, fontWeight: '400'}}> - {data[2].value} dias bons</Text>
-                    <Text style={{fontSize: 15, fontWeight: '400'}}> - {data[3].value} dias felizes</Text>
-                    
-                    {data[0].value > data[1].value && (
-                        <Text style={{width: '95%', textAlign: 'justify', color: '#A9A9A9'}}>
-                            Talvez este não tenha sido um bom mês para você,
-                            pode ser uma ideia interessante rever os hábitos 
-                            que você anotou e tentar descobrir se eles contribuíram
-                            para o seu mal estar!
-                        </Text>
-                    )}
-                    {data[2].value > data[0].value && (
-                        <Text style={{width: '95%', textAlign: 'justify', color: '#A9A9A9'}}>
-                            Esse mês parece ter sido um pouco melhor para você,
-                            que ótimo! Espero que tenha descoberto quais hábitos
-                            estão contribuindo para o seu bem estar! 
-                        </Text>
-                    )}                  
-                </View>
-            )}
-
             <View style={styles.lineChart}>
                 <VictoryChart maxDomain={{ y: 4.5 }} minDomain={{ y: 0.5 }} name="aaaaa">                    
                     <VictoryLine
@@ -109,10 +82,37 @@ export default function ChartScreen({ navigation }) {
                             onLoad: { duration: 1000 }
                         }}
                         categories={{ y: ["Triste", "Neutro", "Bem", "Feliz"] }}
-                        interpolation="natural"                        
+                        interpolation="natural"
                     />
                 </VictoryChart>
             </View>
+
+            {/* <Text style={{}}>{data.map(EMOTIONSDATA => EMOTIONSDATA.value)}</Text> */}
+            {data.length > 0 && (
+                <View style={{paddingHorizontal: 10}}>
+                    <Text style={{fontSize: 17, fontWeight: '500', paddingBottom: 5}}>Durante o mês de {month} você teve:</Text>
+                    <Text style={{fontSize: 15, fontWeight: '400'}}> - {data[0].value} dias tristes</Text>
+                    <Text style={{fontSize: 15, fontWeight: '400'}}> - {data[1].value} dias neutros</Text>
+                    <Text style={{fontSize: 15, fontWeight: '400'}}> - {data[2].value} dias bons</Text>
+                    <Text style={{fontSize: 15, fontWeight: '400'}}> - {data[3].value} dias felizes</Text>
+                    
+                    {data[0].value > data[2].value && (
+                        <Text style={{width: '95%', textAlign: 'justify', color: '#000', marginVertical: 10}}>
+                            Talvez este não tenha sido um bom mês para você,
+                            pode ser uma ideia interessante rever os hábitos 
+                            que você anotou e tentar descobrir se eles contribuíram
+                            para o seu mal estar!
+                        </Text>
+                    )}
+                    {data[3].value > data[0].value && (
+                        <Text style={{width: '95%', textAlign: 'justify', color: '#000', marginVertical: 10}}>
+                            Esse mês parece ter sido um pouco melhor para você,
+                            que ótimo! Espero que tenha descoberto quais hábitos
+                            estão contribuindo para o seu bem estar! 
+                        </Text>
+                    )}                  
+                </View>
+            )}
 
         </ScrollView>
     )
@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginTop: 40,
+        backgroundColor: 'fff'
     },
     header: {
         flexDirection: 'row',

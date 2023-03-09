@@ -5,23 +5,20 @@ const DATA = [
   {
     id: 1,
     title: 'Afazeres',
-    description: 'Complete todas suas tarefas diárias!'
+    description: 'Complete todas suas tarefas diárias!',
+    color: 'blue'
   },
   {
     id: 2,
     title: 'Diário',
-    description: 'Descreva como foi seu dia'
+    description: 'Descreva como foi seu dia',
+    color: 'pink'
   },
-  {
-    id: 3,
-    title: 'Third Item',
-    description: 'Descrição do item 3'
-  }
 ]
 
 const Item = ({title, description}) => (
   <View style={styles.item}>
-    <Text>{title}</Text>
+    <Text style={{fontSize: 20, fontWeight: '500'}}>{title}</Text>
     <Text>{description}</Text>
   </View>
 )
@@ -82,7 +79,13 @@ export default function HomeScreen({navigation}) {
       <View>
         <FlatList 
           data={DATA}
-          renderItem={({item}) => <Item title={item.title} description={item.description} />}
+          renderItem={({item}) => 
+              <Item 
+                title={item.title} 
+                description={item.description} 
+                style={item.color}
+              />           
+          }
           keyExtractor={item => item.id}
         />
       </View>
@@ -168,9 +171,11 @@ const styles = StyleSheet.create({
 
 
   item: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: '#e6cad9',
     padding: 20,
-    marginVertical: 8,
+    marginTop: 20,
+    marginVertical: 0,
     marginHorizontal: 16,
+    borderRadius: 20
   }
 });

@@ -4,13 +4,13 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, FlatList }
 const DATA = [
   {
     id: 1,
-    title: 'First Item',
-    description: 'Descrição do item 1'
+    title: 'Afazeres',
+    description: 'Complete todas suas tarefas diárias!'
   },
   {
     id: 2,
-    title: 'Second Item',
-    description: 'Descrição do item 2'
+    title: 'Diário',
+    description: 'Descreva como foi seu dia'
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ export default function HomeScreen({navigation}) {
             <Image source={require('../assets/images/discover3.png')} style={styles.imageLogo} />
             <Text style={styles.functionatilieName}>Diário</Text>
           </View>          
-        </TouchableOpacity>
+        </TouchableOpacity> 
 
         <TouchableOpacity style={styles.buttonAction} onPress={() => navigation.navigate('HomeNavigator', { screen: 'ChartScreen' })}>
           <View style={styles.buttonArea}>
@@ -70,7 +70,7 @@ export default function HomeScreen({navigation}) {
 
           <View style={styles.metasText}>
             <View style={styles.metasAchieved}>
-              <Text>3/5</Text>
+              <Text>0/5</Text>
             </View>
             <Text style={styles.achievedText}>Tarefas Concluídas</Text>
           </View>
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     backgroundColor: '#F2F1F1',
     padding: 10,
-    
+    alignSelf: 'center'
   },
   metasText: {
     flexDirection: 'row',

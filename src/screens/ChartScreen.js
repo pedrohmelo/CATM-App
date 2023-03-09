@@ -64,7 +64,7 @@ export default function ChartScreen({ navigation }) {
                             fontSize: 12
                         }
                     }}
-                    height={300}
+                    height={280}
                     padAngle={3}                    
                 />
             </View>
@@ -79,24 +79,37 @@ export default function ChartScreen({ navigation }) {
                     <Text style={{fontSize: 15, fontWeight: '400'}}> - {data[3].value} dias felizes</Text>
                     
                     {data[0].value > data[1].value && (
-                        <Text style={{width: '95%', textAlign: 'justify', paddingVertical: 5, color: '#A9A9A9'}}>
-                            Talvez este não tenha sido um bom mês pra você,
+                        <Text style={{width: '95%', textAlign: 'justify', color: '#A9A9A9'}}>
+                            Talvez este não tenha sido um bom mês para você,
                             pode ser uma ideia interessante rever os hábitos 
                             que você anotou e tentar descobrir se eles contribuíram
                             para o seu mal estar!
                         </Text>
-                    )}                    
+                    )}
+                    {data[2].value > data[0].value && (
+                        <Text style={{width: '95%', textAlign: 'justify', color: '#A9A9A9'}}>
+                            Esse mês parece ter sido um pouco melhor para você,
+                            que ótimo! Espero que tenha descoberto quais hábitos
+                            estão contribuindo para o seu bem estar! 
+                        </Text>
+                    )}                  
                 </View>
             )}
 
-            <View>
-                <VictoryChart>
+            <View style={styles.lineChart}>
+                <VictoryChart maxDomain={{ y: 4.5 }} minDomain={{ y: 0.5 }} name="aaaaa">                    
                     <VictoryLine
                         style={{
-                            data: { stroke: "#c43a31" },
+                            data: { stroke: "#EBC580" },
                             parent: { border: "1px solid #ccc" }
                         }}
                         data={dailyData}
+                        animate={{
+                            duration: 2000,
+                            onLoad: { duration: 1000 }
+                        }}
+                        categories={{ y: ["Triste", "Neutro", "Bem", "Feliz"] }}
+                        interpolation="natural"                        
                     />
                 </VictoryChart>
             </View>
@@ -108,7 +121,7 @@ export default function ChartScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 50,
+        marginTop: 40,
     },
     header: {
         flexDirection: 'row',
@@ -118,10 +131,15 @@ const styles = StyleSheet.create({
     },
     headerTitle: {
         fontSize: 20,
-        fontWeight: '500'
+        fontWeight: '500',
     },
     chart: {
         paddingTop: 10,
         width: '100%',
+        marginTop: -15
+    },
+    lineChart: {
+        paddingHorizontal: 15,
+        marginTop: -40
     }
 })

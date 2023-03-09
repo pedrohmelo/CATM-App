@@ -52,7 +52,7 @@ export default function DescribeScreen() {
                 <Text>Bem</Text>
               </View>
             </TouchableOpacity>
-
+ 
             <TouchableOpacity 
               style={selectedEmoji == 3 ? styles.emojiActionSelected : styles.emojiAction}
               onPress={() => {toogleEmoji(3)}}

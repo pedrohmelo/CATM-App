@@ -18,7 +18,7 @@ export default function ToDo3Screen(){
         setModalVisible(!modalVisible)
     }
 
-    const backgroundColors = ['#5CD859', '#24A6D9', '#595BD9', '#8022D9', '#D159D8', '#D85963', '#D88559'];
+    const backgroundColors = ['#5CD859', '#24A6D9', '#595BD9', '#CCA5CE', '#D159D8', '#D85963', '#D88559'];
     const [color, setColor] = useState(backgroundColors[5]);
 
     function renderColors() {
@@ -129,7 +129,7 @@ export default function ToDo3Screen(){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#F5FCFF"
+        backgroundColor: "#fff"
     },
     todaysDate: {
         paddingHorizontal: 20,

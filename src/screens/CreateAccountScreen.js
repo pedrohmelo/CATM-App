@@ -79,11 +79,11 @@ const styles = StyleSheet.create({
         marginTop: 20,
         width: '50%',
         //height: '20%',
-        borderWidth: 1,
-        borderColor: '#8eb28e',
+        //borderWidth: 1,
+        //borderColor: '#8eb28e',
         borderRadius: 20,
         alignSelf: 'center',
-        backgroundColor: '#b7e5b7'
+        backgroundColor: '#e6cad9'
     },
     cadastrateButtonText: {
         alignSelf: 'center',

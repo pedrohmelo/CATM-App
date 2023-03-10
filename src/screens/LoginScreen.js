@@ -47,7 +47,7 @@ export default function LoginScreen({navigation}) {
         //onPress={() => handleLogin()}
         onPress={() => navigation.navigate('TabNavigator', { screen: 'HomeScreen' })}
       >
-        <Text style={[styles.loginButtonText, { color: (email && password) ? '#1D1F1D' : '#ACB5BB' }]}>Entrar</Text>
+        <Text style={[styles.loginButtonText, { color: (email && password) ? '#1D1F1D' : '#1D1F1D' }]}>Entrar</Text>
       </TouchableOpacity>
 
       <TouchableOpacity

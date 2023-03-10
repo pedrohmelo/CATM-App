@@ -14,8 +14,6 @@ export default function DescribeScreen() {
     }
   }
   
- 
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -164,7 +162,7 @@ const styles = StyleSheet.create({
     //borderColor: '#8eb28e',
     borderRadius: 20,
     alignSelf: 'center',
-    backgroundColor: '#98C6EF'
+    backgroundColor: '#e6cad9'
   },
   saveButtonText: {
     textAlign: 'center',

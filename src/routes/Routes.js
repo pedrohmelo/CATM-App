@@ -68,12 +68,12 @@ function TabNavigator(){
             if (route.name === 'Home') {
               iconName = focused ? 'ios-home' : 'ios-home-outline';
               return <Ionicons name={iconName} size={size} color={color} />;
-            } else if (route.name === 'Settings') {
-              iconName = focused ? 'settings' : 'settings-outline';
-              return <Ionicons name={iconName} size={size} color={color} />;
             } else if (route.name === 'Perfil') {
                 iconName = focused ? 'user-alt' : 'user'
                 return <FontAwesome5 name={iconName} size={size} color={color} />;
+            } else if (route.name === 'Settings') {
+              iconName = focused ? 'settings' : 'settings-outline';
+              return <Ionicons name={iconName} size={size} color={color} />;
             }
 
             
@@ -84,8 +84,8 @@ function TabNavigator(){
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
         <Tab.Screen name="Perfil" component={PerfilScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
     )
 }

@@ -41,7 +41,7 @@ const Calendar = ({navigation}) => {
           keyExtractor={(item) => item.toString()}
           numColumns={7}
         />
-      </View>      
+      </View>
       
     </View>
   );

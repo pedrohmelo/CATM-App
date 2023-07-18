@@ -70,11 +70,11 @@ const Calendar = () => {
         const style = selected ? [styles.today, styles.emoji] : styles.dayNumber;
         const text = selected ? selectedEmoji : date.getDate()
         
-        console.log(date, '\n')
-        console.log(selectedDate, '\n')
-        console.log(text, '\n')
-        console.log(selectedEmoji, '\n')
-        console.log(selected, '\n\n', '\n')
+        // console.log(date, '\n')
+        // console.log(selectedDate, '\n')
+        // console.log(text, '\n')
+        // console.log(selectedEmoji, '\n')
+        // console.log(selected, '\n\n', '\n')
         return(
                 <TouchableOpacity key={date} style = {[styles.day, !isCurrentMonth && styles.dayOutsideMonth]}
                     onPress={() => {setSelectedDate(date)}}
